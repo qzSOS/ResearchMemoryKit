@@ -1,0 +1,8 @@
+experiment_id: EXP-001
+status: FINAL
+hypothesis: "The baseline script runs end to end on the toy split."
+gate: "Produces metrics JSON and three preview images."
+code_commit: "example-commit"
+config: "configs/baseline.yaml"
+output: "outputs/EXP-001/"
+parent: null

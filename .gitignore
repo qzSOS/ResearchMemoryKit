@@ -1,0 +1,41 @@
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Local scratch and generated outputs
+scratch/
+tmp/
+outputs/
+checkpoints/
+datasets/
+artifacts/
+*.log
+
+# Large research artifacts
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+*.h5
+*.hdf5
+*.mp4
+*.avi
+*.mov
+*.zip
+*.rar
+
+# Private notes
+PRIVATE*
+private*
+*.local.md

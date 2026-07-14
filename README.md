@@ -1,0 +1,108 @@
+# ResearchMemoryKit
+
+A lightweight Markdown memory system for long-running AI-assisted research projects.
+
+ResearchMemoryKit is not an agent runtime, experiment tracker, database, or workflow engine. It is a small set of files and rules that help a human researcher and coding agents recover context, preserve decisions, and keep experiments moving across many sessions.
+
+中文说明: [README.zh-CN.md](README.zh-CN.md)
+
+## Why This Exists
+
+AI coding agents are good at local execution, but long research projects fail in different ways:
+
+- the current status is buried in a long chat history;
+- decisions are copied into multiple files and drift;
+- failed experiments disappear, then get repeated;
+- "temporary" notes become permanent clutter;
+- agents update familiar files but skip the new memory structure;
+- generated outputs grow faster than the project can explain them.
+
+ResearchMemoryKit treats these as normal research-engineering failure modes. It keeps the system small enough to maintain by hand, while giving every new session a reliable recovery path.
+
+## Core Pattern
+
+Every project starts with a few files:
+
+```text
+AGENTS.md or README.md       recovery router and project rules
+memory/CURRENT_STATE.md      overwriteable current snapshot
+memory/DECISIONS.md          append-only decisions
+memory/EXPERIMENT_LOG.md     append-only conclusions, reformattable presentation
+memory/FAILED_ATTEMPTS.md    append-only failed routes and preserved lessons
+memory/PITFALLS.md           append-only recurring bugs and diagnostics
+memory/SESSION_LOG.md        append-only significant activity
+memory/WORKFLOW.md           completion gates and operating rules
+registry/                    optional experiment metadata only
+```
+
+The critical rule is simple:
+
+> A task is not complete until the memory layer reflects what changed.
+
+## Key Ideas
+
+- **Current State first**: a short, overwriteable snapshot is the entry point for every session.
+- **History is append-only**: decisions, failures, and conclusions preserve provenance.
+- **Routers stay boring**: routers describe where to read, not what the current result is.
+- **One fact, one source**: duplicate mutable truth is treated as a bug.
+- **Completion gates activate behavior**: templates only work when memory updates are part of the definition of done.
+- **Evidence boundaries matter**: do not turn preliminary results into stronger claims than the evidence supports.
+
+## Quick Start
+
+For a small project, copy:
+
+```text
+templates/minimal/
+```
+
+For an experiment-heavy research project, copy:
+
+```text
+templates/research-project/
+```
+
+For an engineering or client-delivery project, copy:
+
+```text
+templates/delivery-project/
+```
+
+Then make the first commit before doing project work. The memory system depends on version history for trust.
+
+## Repository Layout
+
+```text
+templates/                 reusable project memory templates
+examples/                  fully sanitized toy examples
+docs/theory.md             design principles and failure modes
+docs/case-studies/         anonymized case studies
+docs/desensitization.md    public-release checklist
+docs/portfolio-plan.md     how this project can be presented in a portfolio
+```
+
+## When To Use This
+
+Use ResearchMemoryKit when:
+
+- a project spans weeks or months;
+- multiple agents or sessions will touch it;
+- failed experiments are useful evidence;
+- decisions need rationale and revisit conditions;
+- current status must be recoverable without reading the whole chat history.
+
+Do not use it when:
+
+- the task fits in one short session;
+- a real experiment tracking platform is already required;
+- the team needs permissions, dashboards, or a database-backed workflow.
+
+## About
+
+This project was created by [qzSOS](https://github.com/qzSOS) as a portfolio-oriented, public-safe version of a private research memory system used across multiple long-running AI-assisted projects.
+
+The public repository intentionally uses anonymized examples and templates. It does not include private project names, unpublished results, server paths, collaborators, client information, or dataset-specific confidential details.
+
+## License
+
+MIT License. See [LICENSE](LICENSE).
