@@ -6,6 +6,7 @@
 [![No dependencies](https://img.shields.io/badge/dependencies-none-blue.svg)](scripts/init_memory.py)
 [![Validate](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml/badge.svg)](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml)
 [![Bilingual](https://img.shields.io/badge/docs-EN%20%7C%20ZH-lightgrey.svg)](README.md)
+[![LINUX DO](https://img.shields.io/badge/LINUX-DO-ffb000.svg)](https://linux.do)
 
 ResearchMemoryKit 不是 agent runtime、实验管理平台、数据库或工作流引擎。它是一套基于 Markdown 的轻量层，用来帮助研究者和代码 Agent 在多次会话之间恢复上下文、保留决策依据、记录失败分支、门控项目推进，并维持证据可复现。
 

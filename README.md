@@ -6,6 +6,7 @@ A gated memory layer for trustworthy AI-assisted research workflows.
 [![No dependencies](https://img.shields.io/badge/dependencies-none-blue.svg)](scripts/init_memory.py)
 [![Validate](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml/badge.svg)](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml)
 [![Bilingual](https://img.shields.io/badge/docs-EN%20%7C%20ZH-lightgrey.svg)](README.zh-CN.md)
+[![LINUX DO](https://img.shields.io/badge/LINUX-DO-ffb000.svg)](https://linux.do)
 
 ResearchMemoryKit is not an agent runtime, experiment tracker, database, or workflow engine. It is a small Markdown-based layer that helps a human researcher and coding agents recover context, preserve decisions, gate project progress, and keep evidence reproducible across many sessions.
 
