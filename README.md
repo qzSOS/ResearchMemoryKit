@@ -2,9 +2,28 @@
 
 A lightweight Markdown memory system for long-running AI-assisted research projects.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![No dependencies](https://img.shields.io/badge/dependencies-none-blue.svg)](scripts/init_memory.py)
+[![Validation](https://img.shields.io/badge/validation-scripted-blue.svg)](scripts/validate_public_repo.py)
+[![Bilingual](https://img.shields.io/badge/docs-EN%20%7C%20ZH-lightgrey.svg)](README.zh-CN.md)
+
 ResearchMemoryKit is not an agent runtime, experiment tracker, database, or workflow engine. It is a small set of files and rules that help a human researcher and coding agents recover context, preserve decisions, and keep experiments moving across many sessions.
 
 中文说明: [README.zh-CN.md](README.zh-CN.md)
+
+## 30-Second Demo
+
+```bash
+git clone https://github.com/qzSOS/ResearchMemoryKit.git
+cd ResearchMemoryKit
+python scripts/init_memory.py research-project /tmp/my-research-project
+cd /tmp/my-research-project
+find . -maxdepth 3 -type f | sort
+```
+
+You now have a project memory layer with a current snapshot, decision log, experiment log, failed-attempt record, pitfall catalog, workflow gate, and metadata-only registry.
+
+For a read-only example, open [examples/toy-research-project](examples/toy-research-project).
 
 ## Why This Exists
 
@@ -50,25 +69,54 @@ The critical rule is simple:
 
 ## Quick Start
 
-For a small project, copy:
+Use the initialization script:
+
+```bash
+python scripts/init_memory.py minimal /path/to/project
+python scripts/init_memory.py research-project /path/to/project
+python scripts/init_memory.py delivery-project /path/to/project
+```
+
+Or copy a template manually.
+
+For a small project:
 
 ```text
 templates/minimal/
 ```
 
-For an experiment-heavy research project, copy:
+For an experiment-heavy research project:
 
 ```text
 templates/research-project/
 ```
 
-For an engineering or client-delivery project, copy:
+For an engineering or client-delivery project:
 
 ```text
 templates/delivery-project/
 ```
 
 Then make the first commit before doing project work. The memory system depends on version history for trust.
+
+## Which Template Should I Use?
+
+| Template | Best for | Includes |
+|---|---|---|
+| `minimal` | small projects, reading notes, one-person prototypes | Current State, Decisions, Session Log |
+| `research-project` | ML/AI research, experiments, paper work, long baselines | memory router, experiment log, failed attempts, pitfalls, workflow gate, registry |
+| `delivery-project` | engineering reports, client-facing artifacts, generated figures/videos | project state, delivery index, decision log, work log, evidence-boundary rules |
+
+## How It Compares
+
+| Tool category | What it is good at | ResearchMemoryKit difference |
+|---|---|---|
+| Agent memory databases | storing and retrieving agent memories | file-based, inspectable, git-native, no service required |
+| Experiment trackers | metrics, dashboards, runs, artifacts | captures rationale, failed routes, current state, and evidence boundaries |
+| Project management tools | tasks, owners, deadlines | designed for research uncertainty and multi-session agent handoff |
+| Notes apps | flexible human notes | adds lifecycle semantics and completion gates |
+
+See [docs/comparison.md](docs/comparison.md) for the longer version.
 
 ## Repository Layout
 
@@ -79,6 +127,9 @@ docs/theory.md             design principles and failure modes
 docs/case-studies/         anonymized case studies
 docs/desensitization.md    public-release checklist
 docs/portfolio-plan.md     how this project can be presented in a portfolio
+docs/agent-prompts.md      starter prompts for coding agents
+scripts/init_memory.py     dependency-free template initializer
+scripts/validate_public_repo.py public-release validation checks
 ```
 
 ## When To Use This
@@ -102,6 +153,14 @@ Do not use it when:
 This project was created by [qzSOS](https://github.com/qzSOS) as a portfolio-oriented, public-safe version of a private research memory system used across multiple long-running AI-assisted projects.
 
 The public repository intentionally uses anonymized examples and templates. It does not include private project names, unpublished results, server paths, collaborators, client information, or dataset-specific confidential details.
+
+## Roadmap
+
+- `rmk check`: stronger stale-state and router-truth-duplication checks;
+- optional active indexes for very large append-only files;
+- more sanitized examples for paper writing and benchmark packaging;
+- a small GitHub Pages documentation site;
+- starter prompts for common coding agents.
 
 ## License
 

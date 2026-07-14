@@ -2,9 +2,28 @@
 
 一个面向长期 AI 辅助科研项目的轻量级 Markdown 记忆系统。
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![No dependencies](https://img.shields.io/badge/dependencies-none-blue.svg)](scripts/init_memory.py)
+[![Validation](https://img.shields.io/badge/validation-scripted-blue.svg)](scripts/validate_public_repo.py)
+[![Bilingual](https://img.shields.io/badge/docs-EN%20%7C%20ZH-lightgrey.svg)](README.md)
+
 ResearchMemoryKit 不是 agent runtime、实验管理平台、数据库或工作流引擎。它是一组很小的文件模板和维护规则，用来帮助研究者和代码 Agent 在多次会话之间恢复上下文、保留决策依据、记录失败分支，并持续推进项目。
 
 English: [README.md](README.md)
+
+## 30 秒试用
+
+```bash
+git clone https://github.com/qzSOS/ResearchMemoryKit.git
+cd ResearchMemoryKit
+python scripts/init_memory.py research-project /tmp/my-research-project
+cd /tmp/my-research-project
+find . -maxdepth 3 -type f | sort
+```
+
+你会得到一套项目记忆层：当前状态、决策日志、实验日志、失败尝试、坑位目录、工作流完成门和只保存元数据的 registry。
+
+只想阅读示例的话，可以看 [examples/toy-research-project](examples/toy-research-project)。
 
 ## 为什么需要它
 
@@ -50,25 +69,54 @@ registry/                    可选，只保存实验元数据
 
 ## 快速开始
 
-小项目复制：
+使用初始化脚本：
+
+```bash
+python scripts/init_memory.py minimal /path/to/project
+python scripts/init_memory.py research-project /path/to/project
+python scripts/init_memory.py delivery-project /path/to/project
+```
+
+也可以手动复制模板。
+
+小项目：
 
 ```text
 templates/minimal/
 ```
 
-实验密集型科研项目复制：
+实验密集型科研项目：
 
 ```text
 templates/research-project/
 ```
 
-工程交付类项目复制：
+工程交付类项目：
 
 ```text
 templates/delivery-project/
 ```
 
 然后先提交一次 git，再开始正式工作。这个系统依赖版本历史来维持可信度。
+
+## 应该选哪个模板？
+
+| 模板 | 适合场景 | 包含内容 |
+|---|---|---|
+| `minimal` | 小项目、阅读笔记、个人原型 | Current State、Decisions、Session Log |
+| `research-project` | 机器学习/AI 科研、实验、论文、长期 baseline | memory router、实验日志、失败尝试、坑位目录、完成门、registry |
+| `delivery-project` | 工程报告、对外交付、生成图片/视频 | project state、delivery index、decision log、work log、证据边界规则 |
+
+## 和其他工具有什么不同？
+
+| 工具类别 | 擅长什么 | ResearchMemoryKit 的差异 |
+|---|---|---|
+| Agent 记忆数据库 | 存储和检索 agent memory | 文件化、可检查、git-native、不需要服务 |
+| 实验追踪平台 | 指标、dashboard、run、artifact | 记录理由、失败路线、当前状态和证据边界 |
+| 项目管理工具 | 任务、负责人、截止日期 | 面向科研不确定性和多会话 agent 接力 |
+| 笔记软件 | 灵活的人类笔记 | 增加生命周期语义和完成门 |
+
+更详细说明见 [docs/comparison.md](docs/comparison.md)。
 
 ## 仓库结构
 
@@ -79,6 +127,9 @@ docs/theory.md             设计原则和失败模式
 docs/case-studies/         匿名化案例
 docs/desensitization.md    公开发布脱敏检查表
 docs/portfolio-plan.md     作品集呈现建议
+docs/agent-prompts.md      常见 coding agent 启动提示词
+scripts/init_memory.py     零依赖模板初始化脚本
+scripts/validate_public_repo.py 公开发布校验脚本
 ```
 
 ## 适用场景
@@ -102,6 +153,14 @@ docs/portfolio-plan.md     作品集呈现建议
 本项目由 [qzSOS](https://github.com/qzSOS) 创建，是一个面向公开作品集的脱敏版本，用来展示长期 AI 辅助科研项目中的记忆连续性设计。
 
 公开仓库只包含匿名化示例和模板，不包含私人项目名、未发表结果、服务器路径、合作者信息、客户信息或数据集相关敏感细节。
+
+## Roadmap
+
+- `rmk check`：更强的状态过期和 Router 真源重复检查；
+- 为超大只追加文件增加可选活动索引；
+- 增加论文写作和 benchmark packaging 的脱敏示例；
+- 建一个小型 GitHub Pages 文档站；
+- 为常见 coding agent 增加启动提示词。
 
 ## 许可证
 
