@@ -158,6 +158,7 @@ docs/case-studies/         匿名化案例
 docs/desensitization.md    公开发布脱敏检查表
 docs/portfolio-plan.md     作品集呈现建议
 docs/agent-prompts.md      常见 coding agent 启动提示词
+docs/blog/                 可发布文章和项目介绍
 docs/github-actions/       可选 CI workflow 模板
 scripts/init_memory.py     零依赖模板初始化脚本
 scripts/validate_public_repo.py 公开发布校验脚本

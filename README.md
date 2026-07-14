@@ -158,6 +158,7 @@ docs/case-studies/         anonymized case studies
 docs/desensitization.md    public-release checklist
 docs/portfolio-plan.md     how this project can be presented in a portfolio
 docs/agent-prompts.md      starter prompts for coding agents
+docs/blog/                 publishable essays and project introductions
 docs/github-actions/       optional CI workflow template
 scripts/init_memory.py     dependency-free template initializer
 scripts/validate_public_repo.py public-release validation checks
