@@ -7,7 +7,7 @@ authors:
     given-names: "Zhengyang"
 repository-code: "https://github.com/qzSOS/ResearchMemoryKit"
 url: "https://github.com/qzSOS/ResearchMemoryKit"
-abstract: "A lightweight Markdown memory system for long-running AI-assisted research projects."
+abstract: "A gated memory layer for trustworthy AI-assisted research workflows."
 license: "MIT"
 version: "0.1.0"
 date-released: "2026-07-14"

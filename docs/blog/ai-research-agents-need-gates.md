@@ -112,7 +112,7 @@ ResearchMemoryKit includes both fixed templates and an adaptive prompt for this.
 
 ## What ResearchMemoryKit Is
 
-ResearchMemoryKit is a lightweight Markdown operating layer for AI-assisted research.
+ResearchMemoryKit is a gated memory layer for trustworthy AI-assisted research workflows.
 
 It is not an agent runtime, database, or experiment tracker. It is a small git-native structure for:
 
@@ -127,4 +127,3 @@ It is not an agent runtime, database, or experiment tracker. It is a small git-n
 Project:
 
 https://github.com/qzSOS/ResearchMemoryKit
-

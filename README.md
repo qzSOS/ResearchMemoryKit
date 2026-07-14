@@ -1,13 +1,13 @@
 # ResearchMemoryKit
 
-A lightweight Markdown operating layer for AI-assisted research: current state, gated decisions, reproducible evidence, and agent handoffs.
+A gated memory layer for trustworthy AI-assisted research workflows.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![No dependencies](https://img.shields.io/badge/dependencies-none-blue.svg)](scripts/init_memory.py)
 [![Validate](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml/badge.svg)](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml)
 [![Bilingual](https://img.shields.io/badge/docs-EN%20%7C%20ZH-lightgrey.svg)](README.zh-CN.md)
 
-ResearchMemoryKit is not an agent runtime, experiment tracker, database, or workflow engine. It is a small set of files and rules that help a human researcher and coding agents recover context, preserve decisions, gate project progress, and keep evidence reproducible across many sessions.
+ResearchMemoryKit is not an agent runtime, experiment tracker, database, or workflow engine. It is a small Markdown-based layer that helps a human researcher and coding agents recover context, preserve decisions, gate project progress, and keep evidence reproducible across many sessions.
 
 It is more than a context note template. The goal is to turn long AI-assisted research into a **gated, auditable operating loop**: every direction change has rationale, every experiment has a completion gate, every failure preserves a lesson, and every new session starts from a credible current state.
 
@@ -123,9 +123,19 @@ For an engineering or client-delivery project:
 templates/delivery-project/
 ```
 
-Then make the first commit before doing project work. The memory system depends on version history for trust.
+Then make the first commit before doing project work. The memory layer depends on version history for trust.
 
 If your project does not fit a fixed template, use the adaptive prompt in [docs/agent-prompts.md](docs/agent-prompts.md#adaptive-memory-layer-design). It asks an agent to inspect the project needs and design a tailored directory plus memory layer.
+
+## Use With an Agent
+
+For a new project, you can give a coding agent this short instruction:
+
+```text
+Initialize this project with ResearchMemoryKit. Read the project goal and expected workflow, then create the smallest useful directory and memory layer. Define the completion gate that future work must pass before it is considered done. Do not include private paths, unpublished results, credentials, or personal information.
+```
+
+Longer prompts are available in [docs/agent-prompts.md](docs/agent-prompts.md).
 
 ## Which Template Should I Use?
 
@@ -149,7 +159,7 @@ See [docs/comparison.md](docs/comparison.md) for the longer version.
 ## Repository Layout
 
 ```text
-templates/                 reusable project memory templates
+templates/                 reusable gated memory templates
 examples/                  fully sanitized toy examples
 examples/fictional-paper-project gated paper-style example
 docs/theory.md             design principles and failure modes
@@ -184,7 +194,7 @@ Do not use it when:
 
 ## About
 
-This project was created by [qzSOS](https://github.com/qzSOS) as a portfolio-oriented, public-safe version of a private research memory system used across multiple long-running AI-assisted projects.
+This project was created by [qzSOS](https://github.com/qzSOS) as a portfolio-oriented, public-safe version of a private gated memory layer used across multiple long-running AI-assisted projects.
 
 The public repository intentionally uses anonymized examples and templates. It does not include private project names, unpublished results, server paths, collaborators, client information, or dataset-specific confidential details.
 

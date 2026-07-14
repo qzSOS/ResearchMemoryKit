@@ -4,7 +4,7 @@ These prompts help a coding agent use ResearchMemoryKit consistently.
 
 ## Adaptive Memory Layer Design
 
-Use this when a fixed template is not enough and you want the agent to design the project structure and memory system from the actual project needs.
+Use this when a fixed template is not enough and you want the agent to design the project structure and memory layer from the actual project needs.
 
 ```text
 I want this project to use ResearchMemoryKit, but the project may need a custom structure.

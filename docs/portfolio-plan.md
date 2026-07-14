@@ -6,11 +6,11 @@ ResearchMemoryKit is best presented as a research-engineering portfolio project.
 
 Short version:
 
-> A Markdown-based memory continuity kit for long-running AI-assisted research projects.
+> A gated memory layer for trustworthy AI-assisted research workflows.
 
 Resume version:
 
-> Designed and open-sourced ResearchMemoryKit, a lightweight file-based memory system for AI-assisted research workflows, with Current State snapshots, append-only decision logs, failed-attempt records, pitfall catalogs, and completion gates to preserve experiment continuity across sessions.
+> Designed and open-sourced ResearchMemoryKit, a lightweight gated memory layer for AI-assisted research workflows, with Current State snapshots, append-only decision logs, failed-attempt records, pitfall catalogs, and completion gates for trustworthy and reproducible project progress.
 
 ## What It Demonstrates
 
@@ -25,7 +25,7 @@ Resume version:
 
 Pin the repository with a concise description:
 
-> Markdown memory templates for long-running AI-assisted research projects.
+> A gated memory layer for trustworthy AI-assisted research workflows.
 
 Topics:
 

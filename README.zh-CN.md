@@ -1,13 +1,13 @@
 # ResearchMemoryKit
 
-一个面向 AI 辅助科研的轻量级 Markdown 操作层：当前状态、门控决策、可复现证据与 Agent 接力。
+一个面向可信 AI 辅助科研工作流的门控记忆层。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![No dependencies](https://img.shields.io/badge/dependencies-none-blue.svg)](scripts/init_memory.py)
 [![Validate](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml/badge.svg)](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml)
 [![Bilingual](https://img.shields.io/badge/docs-EN%20%7C%20ZH-lightgrey.svg)](README.md)
 
-ResearchMemoryKit 不是 agent runtime、实验管理平台、数据库或工作流引擎。它是一组很小的文件模板和维护规则，用来帮助研究者和代码 Agent 在多次会话之间恢复上下文、保留决策依据、记录失败分支、门控项目推进，并维持证据可复现。
+ResearchMemoryKit 不是 agent runtime、实验管理平台、数据库或工作流引擎。它是一套基于 Markdown 的轻量层，用来帮助研究者和代码 Agent 在多次会话之间恢复上下文、保留决策依据、记录失败分支、门控项目推进，并维持证据可复现。
 
 它不只是上下文备忘录。它的目标是把长期 AI 辅助科研变成一个**有门控、可审计的操作循环**：每次方向变化都有理由，每个实验都有完成门，每个失败都留下教训，每个新会话都从可信的当前状态开始。
 
@@ -123,9 +123,19 @@ templates/research-project/
 templates/delivery-project/
 ```
 
-然后先提交一次 git，再开始正式工作。这个系统依赖版本历史来维持可信度。
+然后先提交一次 git，再开始正式工作。这个记忆层依赖版本历史来维持可信度。
 
 如果你的项目不适合固定模板，可以使用 [docs/agent-prompts.md](docs/agent-prompts.md#adaptive-memory-layer-design) 中的自适应提示词，让 Agent 根据项目需求自行设计目录和记忆层。
+
+## 和 Agent 一起使用
+
+对于一个新项目，可以直接给 coding agent 这段简短指令：
+
+```text
+请用 ResearchMemoryKit 初始化这个项目。先阅读项目目标和预期工作流，然后创建最小但够用的项目目录和记忆层。定义后续任务必须通过的完成门控，只有通过门控才算完成。不要写入私人路径、未发表结果、凭据或个人信息。
+```
+
+更完整的提示词见 [docs/agent-prompts.md](docs/agent-prompts.md)。
 
 ## 应该选哪个模板？
 
@@ -149,7 +159,7 @@ templates/delivery-project/
 ## 仓库结构
 
 ```text
-templates/                 可复用记忆层模板
+templates/                 可复用门控记忆层模板
 examples/                  完全脱敏的玩具示例
 examples/fictional-paper-project 带门控的论文式示例
 docs/theory.md             设计原则和失败模式
@@ -184,7 +194,7 @@ scripts/enable_github_actions.py 本地启用可选 workflow 的辅助脚本
 
 ## 作者
 
-本项目由 [qzSOS](https://github.com/qzSOS) 创建，是一个面向公开作品集的脱敏版本，用来展示长期 AI 辅助科研项目中的记忆连续性设计。
+本项目由 [qzSOS](https://github.com/qzSOS) 创建，是一个面向公开作品集的脱敏版本，用来展示长期 AI 辅助科研项目中的门控记忆层设计。
 
 公开仓库只包含匿名化示例和模板，不包含私人项目名、未发表结果、服务器路径、合作者信息、客户信息或数据集相关敏感细节。
 
