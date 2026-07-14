@@ -7,7 +7,9 @@ This document summarizes the public design theory behind ResearchMemoryKit.
 1. **Recoverability**: a new session can recover enough context to continue.
 2. **Provenance**: decisions, results, and failures have traceable origins.
 3. **Decision credibility**: stored information is reliable enough to act on.
-4. **Human bandwidth conservation**: the system reduces, rather than increases, maintenance burden.
+4. **Direction discipline**: project pivots, stops, and promotions happen through explicit gates rather than momentum.
+5. **Reproducible engineering**: commands, metadata, outputs, and claims stay connected.
+6. **Human bandwidth conservation**: the system reduces, rather than increases, maintenance burden.
 
 ## Axioms
 
@@ -116,6 +118,14 @@ A minimal result with commit, config, dataset/input role, and status is more val
 ### P6: Add Indexes When Append-Only Logs Become Slow
 
 Append-only files can grow large. When retrieval becomes slow, add an active index or summary rather than deleting history.
+
+### P7: Memory Should Gate Progress, Not Only Describe It
+
+The memory layer should define what counts as a completed experiment, accepted claim, valid pivot, or deliverable. This lets agents move autonomously while still producing auditable progress.
+
+### P8: Trust Comes From Closed Loops
+
+An agent can run many commands without advancing research. Progress becomes trustworthy when each loop closes: decision, execution, validation, conclusion or failure, pitfall update, and Current State replacement.
 
 ## What This Is Not
 

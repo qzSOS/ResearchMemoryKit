@@ -13,7 +13,25 @@ python scripts/init_memory.py delivery-project /tmp/rmk-delivery --force
 
 ## Optional GitHub Actions Workflow
 
-If your GitHub token has the `workflow` scope, you can add this as `.github/workflows/validate.yml`:
+The workflow template lives at:
+
+```text
+docs/github-actions/validate.yml
+```
+
+GitHub requires the `workflow` token scope to push files under `.github/workflows/`. If your token does not have that scope, keep the template in `docs/github-actions/` until you refresh auth.
+
+To enable Actions locally:
+
+```bash
+gh auth refresh -s workflow
+python scripts/enable_github_actions.py
+git add .github/workflows/validate.yml
+git commit -m "Enable validation workflow"
+git push
+```
+
+The template content is:
 
 ```yaml
 name: Validate

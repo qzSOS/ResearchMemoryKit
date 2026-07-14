@@ -1,13 +1,15 @@
 # ResearchMemoryKit
 
-A lightweight Markdown memory system for long-running AI-assisted research projects.
+A lightweight Markdown operating layer for AI-assisted research: current state, gated decisions, reproducible evidence, and agent handoffs.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![No dependencies](https://img.shields.io/badge/dependencies-none-blue.svg)](scripts/init_memory.py)
 [![Validation](https://img.shields.io/badge/validation-scripted-blue.svg)](scripts/validate_public_repo.py)
 [![Bilingual](https://img.shields.io/badge/docs-EN%20%7C%20ZH-lightgrey.svg)](README.zh-CN.md)
 
-ResearchMemoryKit is not an agent runtime, experiment tracker, database, or workflow engine. It is a small set of files and rules that help a human researcher and coding agents recover context, preserve decisions, and keep experiments moving across many sessions.
+ResearchMemoryKit is not an agent runtime, experiment tracker, database, or workflow engine. It is a small set of files and rules that help a human researcher and coding agents recover context, preserve decisions, gate project progress, and keep evidence reproducible across many sessions.
+
+It is more than a context note template. The goal is to turn long AI-assisted research into a **gated, auditable operating loop**: every direction change has rationale, every experiment has a completion gate, every failure preserves a lesson, and every new session starts from a credible current state.
 
 中文说明: [README.zh-CN.md](README.zh-CN.md)
 
@@ -25,6 +27,14 @@ You now have a project memory layer with a current snapshot, decision log, exper
 
 For a read-only example, open [examples/toy-research-project](examples/toy-research-project).
 
+## What It Helps With
+
+- **Context recovery**: a new human or agent can restart from a short Current State file.
+- **Project steering**: decisions include rationale, alternatives, and revisit conditions, so the project can stop weak routes instead of drifting.
+- **Trusted research**: experiments close only after results, failures, pitfalls, and state changes are recorded.
+- **Reproducible engineering**: metadata, commands, outputs, and evidence boundaries stay connected.
+- **Agent autonomy with guardrails**: agents can push work forward, but gates define what counts as real progress.
+
 ## Why This Exists
 
 AI coding agents are good at local execution, but long research projects fail in different ways:
@@ -34,9 +44,10 @@ AI coding agents are good at local execution, but long research projects fail in
 - failed experiments disappear, then get repeated;
 - "temporary" notes become permanent clutter;
 - agents update familiar files but skip the new memory structure;
+- agents keep executing tasks without proving that a research gate passed;
 - generated outputs grow faster than the project can explain them.
 
-ResearchMemoryKit treats these as normal research-engineering failure modes. It keeps the system small enough to maintain by hand, while giving every new session a reliable recovery path.
+ResearchMemoryKit treats these as normal research-engineering failure modes. It keeps the system small enough to maintain by hand, while giving every new session a reliable recovery path and every major step an auditable completion condition.
 
 ## Core Pattern
 
@@ -56,7 +67,7 @@ registry/                    optional experiment metadata only
 
 The critical rule is simple:
 
-> A task is not complete until the memory layer reflects what changed.
+> A task is not complete until its gate has passed and the memory layer reflects what changed.
 
 ## Key Ideas
 
@@ -65,6 +76,7 @@ The critical rule is simple:
 - **Routers stay boring**: routers describe where to read, not what the current result is.
 - **One fact, one source**: duplicate mutable truth is treated as a bug.
 - **Completion gates activate behavior**: templates only work when memory updates are part of the definition of done.
+- **Gates steer the project**: experiments, pivots, and deliverables have explicit pass/fail or revisit conditions.
 - **Evidence boundaries matter**: do not turn preliminary results into stronger claims than the evidence supports.
 
 ## Quick Start
@@ -99,6 +111,8 @@ templates/delivery-project/
 
 Then make the first commit before doing project work. The memory system depends on version history for trust.
 
+If your project does not fit a fixed template, use the adaptive prompt in [docs/agent-prompts.md](docs/agent-prompts.md#adaptive-memory-layer-design). It asks an agent to inspect the project needs and design a tailored directory plus memory layer.
+
 ## Which Template Should I Use?
 
 | Template | Best for | Includes |
@@ -124,12 +138,15 @@ See [docs/comparison.md](docs/comparison.md) for the longer version.
 templates/                 reusable project memory templates
 examples/                  fully sanitized toy examples
 docs/theory.md             design principles and failure modes
+docs/gated-research-workflow.md trusted research and reproducible engineering loop
 docs/case-studies/         anonymized case studies
 docs/desensitization.md    public-release checklist
 docs/portfolio-plan.md     how this project can be presented in a portfolio
 docs/agent-prompts.md      starter prompts for coding agents
+docs/github-actions/       optional CI workflow template
 scripts/init_memory.py     dependency-free template initializer
 scripts/validate_public_repo.py public-release validation checks
+scripts/enable_github_actions.py local helper to install the optional workflow
 ```
 
 ## When To Use This
@@ -141,6 +158,7 @@ Use ResearchMemoryKit when:
 - failed experiments are useful evidence;
 - decisions need rationale and revisit conditions;
 - current status must be recoverable without reading the whole chat history.
+- the project needs gates before claims, pivots, or deliverables are accepted.
 
 Do not use it when:
 

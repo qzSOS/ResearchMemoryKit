@@ -2,6 +2,33 @@
 
 These prompts help a coding agent use ResearchMemoryKit consistently.
 
+## Adaptive Memory Layer Design
+
+Use this when a fixed template is not enough and you want the agent to design the project structure and memory system from the actual project needs.
+
+```text
+I want this project to use ResearchMemoryKit, but the project may need a custom structure.
+
+Please inspect the project goal, expected artifacts, experiment or delivery workflow, privacy constraints, and collaboration pattern. Then design a project directory and memory layer that fits this project.
+
+Requirements:
+1. Create a low-volatility router file such as AGENTS.md.
+2. Create an overwriteable Current State file as the first session recovery target.
+3. Create append-only records for decisions, failed attempts, pitfalls, and significant activity.
+4. If the project has experiments, create a metadata-only registry and an experiment completion gate.
+5. If the project has deliverables, create a delivery index and evidence-boundary rules.
+6. Define what counts as "done" for the project: which memory files must be updated before a task, experiment, pivot, or delivery is complete.
+7. Keep mutable facts in one authoritative source; routers should link to Current State instead of restating current truth.
+8. Do not include private paths, credentials, unpublished sensitive details, or personal information.
+
+After creating the structure, explain:
+- why each file exists;
+- which file is authoritative for each kind of fact;
+- the first Current State;
+- the first decision record;
+- the completion gate that future agents must follow.
+```
+
 ## New Session
 
 ```text
