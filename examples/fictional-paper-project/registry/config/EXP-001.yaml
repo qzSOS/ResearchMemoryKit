@@ -1,0 +1,8 @@
+experiment_id: EXP-001
+status: FINAL
+hypothesis: "A simple baseline can run on the leakage-safe toy split."
+gate: "Metrics file exists, preview artifacts are reviewed, and split hashes contain no overlap."
+code_commit: "example-commit-001"
+input_role: "toy source-level validation split"
+command: "python run_baseline.py --config configs/baseline.yaml"
+output: "outputs/EXP-001/"

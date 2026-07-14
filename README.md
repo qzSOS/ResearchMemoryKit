@@ -4,12 +4,23 @@ A lightweight Markdown operating layer for AI-assisted research: current state, 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![No dependencies](https://img.shields.io/badge/dependencies-none-blue.svg)](scripts/init_memory.py)
-[![Validation](https://img.shields.io/badge/validation-scripted-blue.svg)](scripts/validate_public_repo.py)
+[![Validate](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml/badge.svg)](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml)
 [![Bilingual](https://img.shields.io/badge/docs-EN%20%7C%20ZH-lightgrey.svg)](README.zh-CN.md)
 
 ResearchMemoryKit is not an agent runtime, experiment tracker, database, or workflow engine. It is a small set of files and rules that help a human researcher and coding agents recover context, preserve decisions, gate project progress, and keep evidence reproducible across many sessions.
 
 It is more than a context note template. The goal is to turn long AI-assisted research into a **gated, auditable operating loop**: every direction change has rationale, every experiment has a completion gate, every failure preserves a lesson, and every new session starts from a credible current state.
+
+```text
+Current State
+  -> Decision / Gate
+  -> Registered work
+  -> Execution
+  -> Evidence review
+  -> Conclusion or failure
+  -> Pitfall / Session update
+  -> Current State replacement
+```
 
 中文说明: [README.zh-CN.md](README.zh-CN.md)
 
@@ -25,7 +36,10 @@ find . -maxdepth 3 -type f | sort
 
 You now have a project memory layer with a current snapshot, decision log, experiment log, failed-attempt record, pitfall catalog, workflow gate, and metadata-only registry.
 
-For a read-only example, open [examples/toy-research-project](examples/toy-research-project).
+For read-only examples, open:
+
+- [examples/toy-research-project](examples/toy-research-project) for the smallest complete memory layer;
+- [examples/fictional-paper-project](examples/fictional-paper-project) for a gated paper-style workflow.
 
 ## What It Helps With
 
@@ -137,6 +151,7 @@ See [docs/comparison.md](docs/comparison.md) for the longer version.
 ```text
 templates/                 reusable project memory templates
 examples/                  fully sanitized toy examples
+examples/fictional-paper-project gated paper-style example
 docs/theory.md             design principles and failure modes
 docs/gated-research-workflow.md trusted research and reproducible engineering loop
 docs/case-studies/         anonymized case studies

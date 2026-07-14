@@ -4,12 +4,23 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![No dependencies](https://img.shields.io/badge/dependencies-none-blue.svg)](scripts/init_memory.py)
-[![Validation](https://img.shields.io/badge/validation-scripted-blue.svg)](scripts/validate_public_repo.py)
+[![Validate](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml/badge.svg)](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml)
 [![Bilingual](https://img.shields.io/badge/docs-EN%20%7C%20ZH-lightgrey.svg)](README.md)
 
 ResearchMemoryKit 不是 agent runtime、实验管理平台、数据库或工作流引擎。它是一组很小的文件模板和维护规则，用来帮助研究者和代码 Agent 在多次会话之间恢复上下文、保留决策依据、记录失败分支、门控项目推进，并维持证据可复现。
 
 它不只是上下文备忘录。它的目标是把长期 AI 辅助科研变成一个**有门控、可审计的操作循环**：每次方向变化都有理由，每个实验都有完成门，每个失败都留下教训，每个新会话都从可信的当前状态开始。
+
+```text
+Current State
+  -> Decision / Gate
+  -> Registered work
+  -> Execution
+  -> Evidence review
+  -> Conclusion or failure
+  -> Pitfall / Session update
+  -> Current State replacement
+```
 
 English: [README.md](README.md)
 
@@ -25,7 +36,10 @@ find . -maxdepth 3 -type f | sort
 
 你会得到一套项目记忆层：当前状态、决策日志、实验日志、失败尝试、坑位目录、工作流完成门和只保存元数据的 registry。
 
-只想阅读示例的话，可以看 [examples/toy-research-project](examples/toy-research-project)。
+只想阅读示例的话，可以看：
+
+- [examples/toy-research-project](examples/toy-research-project)：最小完整记忆层；
+- [examples/fictional-paper-project](examples/fictional-paper-project)：带门控的论文式工作流示例。
 
 ## 它能帮助什么
 
@@ -137,6 +151,7 @@ templates/delivery-project/
 ```text
 templates/                 可复用记忆层模板
 examples/                  完全脱敏的玩具示例
+examples/fictional-paper-project 带门控的论文式示例
 docs/theory.md             设计原则和失败模式
 docs/gated-research-workflow.md 可信科研与可复现工程循环
 docs/case-studies/         匿名化案例

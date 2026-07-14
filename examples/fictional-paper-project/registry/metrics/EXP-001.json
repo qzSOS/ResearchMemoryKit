@@ -1,0 +1,9 @@
+{
+  "experiment_id": "EXP-001",
+  "status": "FINAL",
+  "metrics": {
+    "synthetic_score": 20.0,
+    "overlap_count": 0
+  },
+  "evidence_boundary": "Control baseline only; not a method-improvement claim."
+}
