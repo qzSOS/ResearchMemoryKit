@@ -35,3 +35,10 @@
 - Rejected empty required-file, router-target, and gate contracts.
 - Prevented fenced Markdown examples from satisfying Current State date checks.
 - Added regression tests, synchronized contribution guidance, formatted all Python sources, and verified the built wheel metadata and installed console entry point.
+
+## 2026-07-15: Gate 4 Closed and `v0.2.0` Released
+
+- Pushed the four gated implementation commits to `main`.
+- Verified the complete GitHub Actions workflow on Python 3.11.
+- Published tag and GitHub Release `v0.2.0`.
+- Closed the P0 goal with 19 passing tests, zero strict self-check findings, no sensitive scan matches, and a clean wheel installation.

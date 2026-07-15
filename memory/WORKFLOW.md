@@ -34,8 +34,8 @@ Adoption closes only when:
 
 Release closes only when:
 
-- [ ] unit tests and public-release validation pass;
-- [ ] sensitive-pattern and diff audits pass;
-- [ ] GitHub Actions passes on the release commit;
-- [ ] release metadata and documentation agree;
-- [ ] Current State records the released result and next route.
+- [x] unit tests and public-release validation pass;
+- [x] sensitive-pattern and diff audits pass;
+- [x] GitHub Actions passes on the release commit;
+- [x] release metadata and documentation agree;
+- [x] Current State records the released result and next route.
