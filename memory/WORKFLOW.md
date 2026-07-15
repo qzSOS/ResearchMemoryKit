@@ -14,11 +14,11 @@ The design phase closes only when:
 
 Implementation closes only when:
 
-- [ ] the dependency-free checker and CLI are implemented;
-- [ ] automated tests cover valid and invalid contracts;
-- [ ] text and JSON output are tested;
-- [ ] no implementation work depends on private projects or unpublished data;
-- [ ] the implementation commit updates project memory.
+- [x] the dependency-free checker and CLI are implemented;
+- [x] automated tests cover valid and invalid contracts;
+- [x] text and JSON output are tested;
+- [x] no implementation work depends on private projects or unpublished data;
+- [x] the implementation commit updates project memory.
 
 ## Gate 3: Adoption
 
