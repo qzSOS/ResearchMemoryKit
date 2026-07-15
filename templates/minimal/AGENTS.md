@@ -23,5 +23,12 @@ If `CURRENT_STATE.md` is older than seven days, treat it as stale and read `SESS
 - Keep the router low-volatility. Do not store current results here.
 - One mutable fact has one authoritative source.
 - Do not let important findings live only in chat history.
-- A task is not complete until the memory files reflect what changed.
 - Use git history for provenance; commit the memory layer early.
+
+## Completion Gate
+
+A task is not complete until:
+
+- `CURRENT_STATE.md` reflects any major state change;
+- important decisions are appended to `DECISIONS.md`;
+- significant activity is appended to `SESSION_LOG.md`.

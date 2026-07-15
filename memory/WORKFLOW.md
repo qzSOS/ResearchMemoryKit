@@ -24,11 +24,11 @@ Implementation closes only when:
 
 Adoption closes only when:
 
-- [ ] every bundled template includes a manifest;
-- [ ] examples pass `rmk check`;
-- [ ] this repository passes `rmk check --strict`;
-- [ ] README, adoption docs, and CI show the real command;
-- [ ] the adoption commit updates project memory.
+- [x] every bundled template includes a manifest;
+- [x] examples pass `rmk check`;
+- [x] this repository passes `rmk check --strict`;
+- [x] README, adoption docs, and CI show the real command;
+- [x] the adoption commit updates project memory.
 
 ## Gate 4: Release
 

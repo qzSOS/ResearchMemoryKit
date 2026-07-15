@@ -3,7 +3,7 @@
 A gated memory layer for trustworthy AI-assisted research workflows.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![No dependencies](https://img.shields.io/badge/dependencies-none-blue.svg)](scripts/init_memory.py)
+[![No runtime dependencies](https://img.shields.io/badge/runtime_dependencies-none-blue.svg)](pyproject.toml)
 [![Validate](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml/badge.svg)](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml)
 [![Bilingual](https://img.shields.io/badge/docs-EN%20%7C%20ZH-lightgrey.svg)](README.zh-CN.md)
 [![LINUX DO](https://img.shields.io/badge/LINUX-DO-ffb000.svg)](https://linux.do)
@@ -30,12 +30,22 @@ Current State
 ```bash
 git clone https://github.com/qzSOS/ResearchMemoryKit.git
 cd ResearchMemoryKit
+python -m pip install -e . --no-deps
+rmk check . --strict
 python scripts/init_memory.py research-project /tmp/my-research-project
-cd /tmp/my-research-project
-find . -maxdepth 3 -type f | sort
 ```
 
-You now have a project memory layer with a current snapshot, decision log, experiment log, failed-attempt record, pitfall catalog, workflow gate, and metadata-only registry.
+The repository validates its own memory contract, then initializes a project
+with a current snapshot, decision log, experiment log, failed-attempt record,
+pitfall catalog, workflow gate, metadata-only registry, and `rmk.json`.
+
+Fill the generated Current State before running:
+
+```bash
+rmk check /tmp/my-research-project
+```
+
+An uninitialized `YYYY-MM-DD` date is intentionally reported as an error.
 
 For read-only examples, open:
 
@@ -84,6 +94,22 @@ The critical rule is simple:
 
 > A task is not complete until its gate has passed and the memory layer reflects what changed.
 
+## Machine-Verifiable Gates
+
+Each managed project includes an explicit `rmk.json` contract. The P0 checker
+validates required files, path safety, router reachability, gate headings,
+Current State dates, staleness, and unresolved placeholders.
+
+```bash
+rmk check /path/to/project
+rmk check /path/to/project --strict
+rmk check /path/to/project --format json
+```
+
+Normal mode fails on broken contracts. `--strict` also fails on warnings, which
+makes it suitable for CI. See [docs/rmk-check.md](docs/rmk-check.md) for the
+manifest and stable finding codes.
+
 ## Key Ideas
 
 - **Current State first**: a short, overwriteable snapshot is the entry point for every session.
@@ -99,9 +125,11 @@ The critical rule is simple:
 Use the initialization script:
 
 ```bash
+python -m pip install -e . --no-deps
 python scripts/init_memory.py minimal /path/to/project
 python scripts/init_memory.py research-project /path/to/project
 python scripts/init_memory.py delivery-project /path/to/project
+rmk check /path/to/project
 ```
 
 Or copy a template manually.
@@ -125,6 +153,9 @@ templates/delivery-project/
 ```
 
 Then make the first commit before doing project work. The memory layer depends on version history for trust.
+
+The generated contract will fail until the Current State date is initialized.
+This prevents an untouched template from appearing healthy.
 
 If your project does not fit a fixed template, use the adaptive prompt in [docs/agent-prompts.md](docs/agent-prompts.md#adaptive-memory-layer-design). It asks an agent to inspect the project needs and design a tailored directory plus memory layer.
 
@@ -163,7 +194,11 @@ See [docs/comparison.md](docs/comparison.md) for the longer version.
 templates/                 reusable gated memory templates
 examples/                  fully sanitized toy examples
 examples/fictional-paper-project gated paper-style example
+researchmemorykit/          dependency-free checker and CLI
+tests/                      standard-library regression tests
+rmk.json                    this repository's self-hosted contract
 docs/theory.md             design principles and failure modes
+docs/rmk-check.md           checker contract and stable finding codes
 docs/gated-research-workflow.md trusted research and reproducible engineering loop
 docs/case-studies/         anonymized case studies
 docs/desensitization.md    public-release checklist
@@ -201,7 +236,10 @@ The public repository intentionally uses anonymized examples and templates. It d
 
 ## Roadmap
 
-- `rmk check`: stronger stale-state and router-truth-duplication checks;
+- registry lifecycle and experiment cross-reference checks;
+- git-aware append-only deletion detection;
+- claim evidence and human-review status;
+- conservative router-truth-duplication checks;
 - optional active indexes for very large append-only files;
 - more sanitized examples for paper writing and benchmark packaging;
 - a small GitHub Pages documentation site;

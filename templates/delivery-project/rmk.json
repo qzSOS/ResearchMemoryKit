@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "profile": "delivery-project",
+  "router": "AGENTS.md",
+  "current_state": {
+    "path": "PROJECT_STATE.md",
+    "stale_after_days": 7
+  },
+  "required_files": [
+    "AGENTS.md",
+    "PROJECT_STATE.md",
+    "DELIVERY_INDEX.md",
+    "DECISION_LOG.md",
+    "WORK_LOG.md"
+  ],
+  "append_only_files": [
+    "DECISION_LOG.md",
+    "WORK_LOG.md"
+  ],
+  "router_targets": [
+    "PROJECT_STATE.md",
+    "DELIVERY_INDEX.md",
+    "DECISION_LOG.md",
+    "WORK_LOG.md"
+  ],
+  "gates": [
+    {
+      "file": "AGENTS.md",
+      "heading": "Delivery Completion Gate"
+    }
+  ]
+}

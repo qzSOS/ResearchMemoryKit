@@ -10,7 +10,7 @@ Short version:
 
 Resume version:
 
-> Designed and open-sourced ResearchMemoryKit, a lightweight gated memory layer for AI-assisted research workflows, with Current State snapshots, append-only decision logs, failed-attempt records, pitfall catalogs, and completion gates for trustworthy and reproducible project progress.
+> Designed and open-sourced ResearchMemoryKit, a dependency-free gated memory layer for AI-assisted research workflows, with explicit project contracts, Current State snapshots, append-only research records, completion gates, and a CI-ready `rmk check` validator.
 
 ## What It Demonstrates
 
@@ -18,6 +18,7 @@ Resume version:
 - ability to turn repeated workflow failures into system design;
 - disciplined provenance and evidence-boundary thinking;
 - practical AI-agent collaboration;
+- dependency-free Python CLI and contract validation;
 - template design, documentation, and public-facing abstraction;
 - awareness of privacy and publication boundaries.
 
@@ -66,8 +67,8 @@ research-engineering
 
 ## Future Work
 
-- add a small CLI to initialize templates;
-- add a linter for router truth duplication;
-- add a stale-state checker;
-- add a privacy scanner for public release;
+- add registry lifecycle and experiment reference checks;
+- add git-aware append-only deletion detection;
+- add claim evidence and human-review status;
+- add conservative router truth-duplication checks;
 - add optional indexes for large append-only files.

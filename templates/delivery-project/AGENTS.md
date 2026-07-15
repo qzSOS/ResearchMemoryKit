@@ -24,3 +24,12 @@ If `PROJECT_STATE.md` is stale, reconstruct current status from `WORK_LOG.md`, `
 - Keep rejected outputs visible as diagnostics, but do not present them as evidence.
 - Review images, videos, reports, or tables before calling them accepted deliverables.
 - Keep this router free of mutable results.
+
+## Delivery Completion Gate
+
+A delivery task is not complete until:
+
+- `PROJECT_STATE.md` reflects the accepted state;
+- `DELIVERY_INDEX.md` classifies the artifact and evidence boundary;
+- decisions or wording boundaries are appended to `DECISION_LOG.md`;
+- significant validation and rejection activity is appended to `WORK_LOG.md`.

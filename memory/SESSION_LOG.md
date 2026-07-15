@@ -20,3 +20,11 @@
 - Implemented stable P0 findings for manifest, path, file, routing, gate, date, staleness, and placeholder checks.
 - Added 15 standard-library unit tests covering valid contracts, failures, warnings, strict mode, JSON output, and custom manifests.
 - Verified editable installation, `rmk --version`, `rmk check . --strict`, bytecode compilation, and public-release validation.
+
+## 2026-07-15: Gate 3 Closed
+
+- Added `rmk.json` contracts to all bundled templates and sanitized examples.
+- Added explicit completion gates to the minimal and delivery templates.
+- Added bundled-project regression tests; the suite now contains 17 tests.
+- Updated bilingual README, adoption prompts, comparison, portfolio, theory, CI, and citation metadata for `0.2.0`.
+- Verified initialized templates copy the manifest and fail only on the intentionally uninitialized Current State date.

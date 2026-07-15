@@ -8,16 +8,22 @@ This guide describes how to introduce ResearchMemoryKit into a real project.
 2. Copy it with `scripts/init_memory.py`.
 3. Fill in `CURRENT_STATE.md`.
 4. Record the initial scope decision.
-5. Commit the memory layer before project work starts.
+5. Run `rmk check`.
+6. Commit the memory layer before project work starts.
 
 Recommended:
 
 ```bash
+python -m pip install -e /path/to/ResearchMemoryKit --no-deps
 python scripts/init_memory.py research-project /path/to/new-project
 cd /path/to/new-project
+rmk check .
 git add .
 git commit -m "Initialize project memory layer"
 ```
+
+An untouched template intentionally fails until its Current State date is
+initialized.
 
 ## Existing Projects
 
@@ -29,7 +35,9 @@ Use this sequence:
 2. Write `CURRENT_STATE.md` from the actual current state.
 3. Add one decision explaining why the memory layer exists.
 4. Add a completion gate to the workflow.
-5. During the next real task, explicitly update memory before calling the task done.
+5. Make `rmk.json` describe the authoritative files and gates.
+6. Run `rmk check` and resolve contract errors.
+7. During the next real task, explicitly update memory before calling the task done.
 
 Do not just add files and expect behavior to change.
 
@@ -59,6 +67,7 @@ Daily or per session:
 
 - replace Current State when active status changes;
 - append significant session activity.
+- run `rmk check` before calling a substantial task complete.
 
 Per experiment:
 

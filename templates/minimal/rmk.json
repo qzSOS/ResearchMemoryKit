@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "profile": "minimal",
+  "router": "AGENTS.md",
+  "current_state": {
+    "path": "CURRENT_STATE.md",
+    "stale_after_days": 7
+  },
+  "required_files": [
+    "AGENTS.md",
+    "CURRENT_STATE.md",
+    "DECISIONS.md",
+    "SESSION_LOG.md"
+  ],
+  "append_only_files": [
+    "DECISIONS.md",
+    "SESSION_LOG.md"
+  ],
+  "router_targets": [
+    "CURRENT_STATE.md",
+    "DECISIONS.md",
+    "SESSION_LOG.md"
+  ],
+  "gates": [
+    {
+      "file": "AGENTS.md",
+      "heading": "Completion Gate"
+    }
+  ]
+}

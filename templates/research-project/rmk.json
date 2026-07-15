@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "profile": "research-project",
+  "router": "AGENTS.md",
+  "current_state": {
+    "path": "memory/CURRENT_STATE.md",
+    "stale_after_days": 7
+  },
+  "required_files": [
+    "AGENTS.md",
+    "memory/CURRENT_STATE.md",
+    "memory/DECISIONS.md",
+    "memory/EXPERIMENT_LOG.md",
+    "memory/FAILED_ATTEMPTS.md",
+    "memory/PITFALLS.md",
+    "memory/README.md",
+    "memory/SESSION_LOG.md",
+    "memory/WORKFLOW.md",
+    "registry/README.md"
+  ],
+  "append_only_files": [
+    "memory/DECISIONS.md",
+    "memory/EXPERIMENT_LOG.md",
+    "memory/FAILED_ATTEMPTS.md",
+    "memory/PITFALLS.md",
+    "memory/SESSION_LOG.md"
+  ],
+  "router_targets": [
+    "memory/CURRENT_STATE.md",
+    "memory/DECISIONS.md",
+    "memory/EXPERIMENT_LOG.md",
+    "memory/FAILED_ATTEMPTS.md",
+    "memory/PITFALLS.md",
+    "memory/README.md",
+    "memory/SESSION_LOG.md",
+    "memory/WORKFLOW.md"
+  ],
+  "gates": [
+    {
+      "file": "memory/WORKFLOW.md",
+      "heading": "Experiment Completion Gate"
+    }
+  ]
+}

@@ -5,23 +5,33 @@ This repository ships with dependency-free validation scripts.
 Run locally:
 
 ```bash
+python -m pip install -e . --no-deps
+python -m unittest discover -s tests -v
+rmk check . --strict
+rmk check examples/toy-research-project
+rmk check examples/fictional-paper-project
 python scripts/validate_public_repo.py .
 python scripts/init_memory.py minimal /tmp/rmk-minimal --force
 python scripts/init_memory.py research-project /tmp/rmk-research --force
 python scripts/init_memory.py delivery-project /tmp/rmk-delivery --force
 ```
 
-## Optional GitHub Actions Workflow
+The template tests intentionally expect a freshly copied Current State to fail
+until its `YYYY-MM-DD` date is initialized.
 
-The workflow template lives at:
+## GitHub Actions Workflow
+
+The active workflow lives at:
 
 ```text
-docs/github-actions/validate.yml
+.github/workflows/validate.yml
 ```
 
-GitHub requires the `workflow` token scope to push files under `.github/workflows/`. If your token does not have that scope, keep the template in `docs/github-actions/` until you refresh auth.
+A synchronized copy is kept at `docs/github-actions/validate.yml` for projects
+that want to adopt the workflow.
 
-To enable Actions locally:
+GitHub requires the `workflow` token scope to push files under
+`.github/workflows/`. To install the synchronized copy in another checkout:
 
 ```bash
 gh auth refresh -s workflow
@@ -51,6 +61,20 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
+      - name: Install ResearchMemoryKit
+        run: python -m pip install -e . --no-deps
+
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Validate self-hosted contract
+        run: rmk check . --strict
+
+      - name: Validate bundled examples
+        run: |
+          rmk check examples/toy-research-project
+          rmk check examples/fictional-paper-project
 
       - name: Validate public repo
         run: python scripts/validate_public_repo.py .

@@ -19,14 +19,17 @@ Requirements:
 5. If the project has deliverables, create a delivery index and evidence-boundary rules.
 6. Define what counts as "done" for the project: which memory files must be updated before a task, experiment, pivot, or delivery is complete.
 7. Keep mutable facts in one authoritative source; routers should link to Current State instead of restating current truth.
-8. Do not include private paths, credentials, unpublished sensitive details, or personal information.
+8. Create an `rmk.json` contract for the router, Current State, required files, append-only files, routed targets, stale threshold, and gate headings.
+9. Run `rmk check` if the command is available.
+10. Do not include private paths, credentials, unpublished sensitive details, or personal information.
 
 After creating the structure, explain:
 - why each file exists;
 - which file is authoritative for each kind of fact;
 - the first Current State;
 - the first decision record;
-- the completion gate that future agents must follow.
+- the completion gate that future agents must follow;
+- the `rmk check` result.
 ```
 
 ## New Session
@@ -40,6 +43,7 @@ Before doing non-trivial work:
 3. Read memory/README.md and any routed files needed for the task.
 4. Inspect git status.
 5. Follow memory/WORKFLOW.md.
+6. Run `rmk check` before closing a substantial task.
 
 Do not treat the task as complete until the memory layer reflects any major state change.
 ```
@@ -65,6 +69,7 @@ Constraints:
 - Put current mutable facts only in memory/CURRENT_STATE.md.
 - Add one decision explaining why the memory layer exists.
 - Add a completion gate to memory/WORKFLOW.md.
+- Create or update rmk.json and run rmk check.
 - Do not copy private paths, credentials, or unpublished sensitive details into public-facing files.
 ```
 
@@ -82,4 +87,5 @@ Check:
 - examples are fictional or fully anonymized.
 
 Run scripts/validate_public_repo.py if available.
+Run rmk check . --strict if the repository has rmk.json.
 ```

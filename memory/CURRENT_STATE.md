@@ -3,11 +3,11 @@
 > Overwriteable project snapshot. Replace this content when the active phase changes.
 
 - **Date**: 2026-07-15
-- **Phase**: `rmk check` P0 adoption.
+- **Phase**: `rmk check` P0 release audit.
 - **Active goal**: Turn ResearchMemoryKit into a machine-verifiable, self-hosted gated memory protocol.
-- **Current best**: The dependency-free `rmk check` CLI passes 15 unit tests and validates this repository with zero findings.
-- **Active work**: Add manifests to bundled templates and examples, then expose the real command in docs and CI.
+- **Current best**: The CLI passes 17 tests; all templates carry contracts; both examples and this repository validate successfully.
+- **Active work**: Perform the final security, privacy, packaging, git, and remote CI audit for release `0.2.0`.
 - **Key decision**: `D-001` defines an explicit JSON manifest and zero-runtime-dependency CLI.
 - **Known risk**: Over-expanding into a general agent runtime, specification framework, or memory database.
-- **Next step**: Make every generated project contract-aware and verify the repository self-hosts the checker in CI.
-- **Stop condition**: Do not prepare a release until templates, examples, docs, and CI all use the implemented command.
+- **Next step**: Audit the complete diff, push the gated commits, verify GitHub Actions, and publish release metadata.
+- **Stop condition**: Do not tag or announce `0.2.0` until local and remote release gates pass.

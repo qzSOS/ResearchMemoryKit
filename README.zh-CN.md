@@ -3,7 +3,7 @@
 一个面向可信 AI 辅助科研工作流的门控记忆层。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![No dependencies](https://img.shields.io/badge/dependencies-none-blue.svg)](scripts/init_memory.py)
+[![No runtime dependencies](https://img.shields.io/badge/runtime_dependencies-none-blue.svg)](pyproject.toml)
 [![Validate](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml/badge.svg)](https://github.com/qzSOS/ResearchMemoryKit/actions/workflows/validate.yml)
 [![Bilingual](https://img.shields.io/badge/docs-EN%20%7C%20ZH-lightgrey.svg)](README.md)
 [![LINUX DO](https://img.shields.io/badge/LINUX-DO-ffb000.svg)](https://linux.do)
@@ -30,12 +30,20 @@ English: [README.md](README.md)
 ```bash
 git clone https://github.com/qzSOS/ResearchMemoryKit.git
 cd ResearchMemoryKit
+python -m pip install -e . --no-deps
+rmk check . --strict
 python scripts/init_memory.py research-project /tmp/my-research-project
-cd /tmp/my-research-project
-find . -maxdepth 3 -type f | sort
 ```
 
-你会得到一套项目记忆层：当前状态、决策日志、实验日志、失败尝试、坑位目录、工作流完成门和只保存元数据的 registry。
+仓库会先验证自己的记忆契约，然后初始化一套项目记忆层：当前状态、决策日志、实验日志、失败尝试、坑位目录、工作流完成门、只保存元数据的 registry，以及 `rmk.json`。
+
+填写生成的 Current State 后运行：
+
+```bash
+rmk check /tmp/my-research-project
+```
+
+未初始化的 `YYYY-MM-DD` 日期会被主动报告为错误。
 
 只想阅读示例的话，可以看：
 
@@ -84,6 +92,18 @@ registry/                    可选，只保存实验元数据
 
 > 任务不算完成，直到门控通过，并且记忆层反映了这次变化。
 
+## 可机器验证的门控
+
+每个受管理项目都有一个显式的 `rmk.json` 契约。P0 检查器会验证必需文件、路径安全、Router 可达性、门控标题、Current State 日期、状态过期和未解决占位符。
+
+```bash
+rmk check /path/to/project
+rmk check /path/to/project --strict
+rmk check /path/to/project --format json
+```
+
+普通模式在契约破损时失败；`--strict` 还会让 warning 导致失败，适合接入 CI。Manifest 和稳定错误码见 [docs/rmk-check.md](docs/rmk-check.md)。
+
 ## 关键原则
 
 - **先读 Current State**：短小、可覆盖的当前快照是每次会话入口。
@@ -99,9 +119,11 @@ registry/                    可选，只保存实验元数据
 使用初始化脚本：
 
 ```bash
+python -m pip install -e . --no-deps
 python scripts/init_memory.py minimal /path/to/project
 python scripts/init_memory.py research-project /path/to/project
 python scripts/init_memory.py delivery-project /path/to/project
+rmk check /path/to/project
 ```
 
 也可以手动复制模板。
@@ -125,6 +147,8 @@ templates/delivery-project/
 ```
 
 然后先提交一次 git，再开始正式工作。这个记忆层依赖版本历史来维持可信度。
+
+生成的契约会在 Current State 日期初始化前保持失败状态，避免未填写模板被误认为健康项目。
 
 如果你的项目不适合固定模板，可以使用 [docs/agent-prompts.md](docs/agent-prompts.md#adaptive-memory-layer-design) 中的自适应提示词，让 Agent 根据项目需求自行设计目录和记忆层。
 
@@ -163,7 +187,11 @@ templates/delivery-project/
 templates/                 可复用门控记忆层模板
 examples/                  完全脱敏的玩具示例
 examples/fictional-paper-project 带门控的论文式示例
+researchmemorykit/          零运行时依赖检查器和 CLI
+tests/                      标准库回归测试
+rmk.json                    本仓库自托管契约
 docs/theory.md             设计原则和失败模式
+docs/rmk-check.md           检查契约和稳定错误码
 docs/gated-research-workflow.md 可信科研与可复现工程循环
 docs/case-studies/         匿名化案例
 docs/desensitization.md    公开发布脱敏检查表
@@ -201,7 +229,10 @@ scripts/enable_github_actions.py 本地启用可选 workflow 的辅助脚本
 
 ## Roadmap
 
-- `rmk check`：更强的状态过期和 Router 真源重复检查；
+- registry 生命周期和实验交叉引用检查；
+- 基于 git 的只追加删除检测；
+- claim 证据和人工审核状态；
+- 保守的 Router 真源重复检查；
 - 为超大只追加文件增加可选活动索引；
 - 增加论文写作和 benchmark packaging 的脱敏示例；
 - 建一个小型 GitHub Pages 文档站；

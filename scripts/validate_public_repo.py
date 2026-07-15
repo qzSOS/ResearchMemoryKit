@@ -18,7 +18,18 @@ import sys
 from pathlib import Path
 
 
-SKIP_DIRS = {".git", "__pycache__", ".pytest_cache", ".ruff_cache"}
+SKIP_DIRS = {
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+    "venv",
+}
+SKIP_DIR_SUFFIXES = (".egg-info",)
 MARKDOWN_LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
 
 SENSITIVE_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
@@ -38,7 +49,10 @@ SENSITIVE_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
 def iter_files(root: Path) -> list[Path]:
     files: list[Path] = []
     for path in root.rglob("*"):
-        if any(part in SKIP_DIRS for part in path.parts):
+        if any(
+            part in SKIP_DIRS or part.endswith(SKIP_DIR_SUFFIXES)
+            for part in path.parts
+        ):
             continue
         if path.is_file():
             files.append(path)
