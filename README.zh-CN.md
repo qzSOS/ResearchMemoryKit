@@ -190,12 +190,12 @@ examples/fictional-paper-project 带门控的论文式示例
 researchmemorykit/          零运行时依赖检查器和 CLI
 tests/                      标准库回归测试
 rmk.json                    本仓库自托管契约
+memory/                     本仓库自身的公开安全记忆层
 docs/theory.md             设计原则和失败模式
 docs/rmk-check.md           检查契约和稳定错误码
 docs/gated-research-workflow.md 可信科研与可复现工程循环
 docs/case-studies/         匿名化案例
 docs/desensitization.md    公开发布脱敏检查表
-docs/portfolio-plan.md     作品集呈现建议
 docs/agent-prompts.md      常见 coding agent 启动提示词
 docs/blog/                 可发布文章和项目介绍
 docs/github-actions/       可选 CI workflow 模板
@@ -203,6 +203,15 @@ scripts/init_memory.py     零依赖模板初始化脚本
 scripts/validate_public_repo.py 公开发布校验脚本
 scripts/enable_github_actions.py 本地启用可选 workflow 的辅助脚本
 ```
+
+根目录的 `memory/` 是有意提交的。它只记录 ResearchMemoryKit 自身的开发，
+作为 `rmk check . --strict` 所检查契约的脱敏自托管实例，不包含从任何私人
+科研项目复制的记忆内容。
+
+## 延伸阅读
+
+- [AI 科研 Agent 需要的不只是记忆，而是门控](docs/blog/ai-research-agents-need-gates-zh.md)
+- [AI Research Agents Need Gates, Not Just Memory](docs/blog/ai-research-agents-need-gates.md)
 
 ## 适用场景
 
@@ -223,7 +232,7 @@ scripts/enable_github_actions.py 本地启用可选 workflow 的辅助脚本
 
 ## 作者
 
-本项目由 [qzSOS](https://github.com/qzSOS) 创建，是一个面向公开作品集的脱敏版本，用来展示长期 AI 辅助科研项目中的门控记忆层设计。
+本项目由 [qzSOS](https://github.com/qzSOS) 创建，是从多个长期 AI 辅助项目所使用的门控记忆层中提炼出的公开参考实现。
 
 公开仓库只包含匿名化示例和模板，不包含私人项目名、未发表结果、服务器路径、合作者信息、客户信息或数据集相关敏感细节。
 

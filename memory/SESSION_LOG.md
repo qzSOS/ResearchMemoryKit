@@ -42,3 +42,11 @@
 - Verified the complete GitHub Actions workflow on Python 3.11.
 - Published tag and GitHub Release `v0.2.0`.
 - Closed the P0 goal with 19 passing tests, zero strict self-check findings, no sensitive scan matches, and a clean wheel installation.
+
+## 2026-07-15: Public Boundary Audit
+
+- Re-audited the GitHub-visible tree, release metadata, project memory, author metadata, portfolio material, and publishable essays.
+- Kept the root `memory/` as an explicit sanitized self-hosting example and documented its public boundary.
+- Removed the internal portfolio planning document from the public documentation tree while keeping the reusable gated-research essays.
+- Defined public maintainer attribution as distinct from private source-project information.
+- Expanded public validation to scan citation, package, and license metadata.

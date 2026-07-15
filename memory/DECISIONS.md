@@ -27,3 +27,16 @@
 | Alternatives | Add registry lifecycle, claim review, git append-only enforcement, semantic duplication detection, or retrieval indexes immediately. |
 | Revisit condition | Add deeper checks only after P0 is stable and self-hosted. |
 | Source | `docs/rmk-check.md` |
+
+## D-003: Publish Self-Hosted Memory and Explicit Author Attribution
+
+| Field | Value |
+|---|---|
+| Date | 2026-07-15 |
+| Status | Active |
+| Question | Which repository memory and identity information belongs in the public project? |
+| Decision | Keep the root `memory/` as a sanitized self-hosting example and keep the maintainer's intentionally public identity in repository-level license, citation, and package metadata. Exclude personal identity and all private source-project details from templates, examples, case studies, and memory records. |
+| Rationale | Self-hosting demonstrates that the contract is used in practice. Repository authorship supports ownership, citation, and portfolio verification, while source-project confidentiality requires a stricter content boundary. |
+| Alternatives | Remove the root memory layer; anonymize all authorship metadata; publish private project-derived records after redaction. |
+| Revisit condition | Revisit if the maintainer chooses a pseudonymous public identity or if a self-hosted record would expose non-public work. |
+| Source | `docs/desensitization.md` |

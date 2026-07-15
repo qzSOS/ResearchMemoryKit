@@ -52,4 +52,9 @@ dependencies.
 
 Do not submit real project names, unpublished metrics, server paths, collaborator names, client information, dataset-private details, credentials, or screenshots that reveal local paths.
 
+Public maintainer attribution belongs only in repository-level pages and
+metadata such as `README.md`, `LICENSE`, `CITATION.cff`, and package metadata.
+Do not add personal identities to templates, examples, case studies, or
+project-memory records.
+
 Use [docs/desensitization.md](docs/desensitization.md) before opening a pull request.

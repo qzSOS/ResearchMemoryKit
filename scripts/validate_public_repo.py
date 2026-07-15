@@ -31,6 +31,17 @@ SKIP_DIRS = {
 }
 SKIP_DIR_SUFFIXES = (".egg-info",)
 MARKDOWN_LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+SENSITIVE_SCAN_SUFFIXES = {
+    ".cff",
+    ".json",
+    ".md",
+    ".py",
+    ".toml",
+    ".txt",
+    ".yaml",
+    ".yml",
+}
+SENSITIVE_SCAN_NAMES = {"LICENSE"}
 
 SENSITIVE_PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ("windows-drive-path", re.compile(r"\b[A-Za-z]:\\")),
@@ -95,7 +106,10 @@ def validate_markdown_links(files: list[Path], root: Path) -> list[str]:
 def scan_sensitive(files: list[Path], root: Path) -> list[str]:
     errors: list[str] = []
     for path in files:
-        if path.suffix.lower() not in {".md", ".txt", ".json", ".yaml", ".yml", ".py"}:
+        if (
+            path.suffix.lower() not in SENSITIVE_SCAN_SUFFIXES
+            and path.name not in SENSITIVE_SCAN_NAMES
+        ):
             continue
         text = path.read_text(encoding="utf-8", errors="replace")
         for name, pattern in SENSITIVE_PATTERNS:

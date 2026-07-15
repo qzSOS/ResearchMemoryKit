@@ -197,12 +197,12 @@ examples/fictional-paper-project gated paper-style example
 researchmemorykit/          dependency-free checker and CLI
 tests/                      standard-library regression tests
 rmk.json                    this repository's self-hosted contract
+memory/                     public-safe memory for this repository itself
 docs/theory.md             design principles and failure modes
 docs/rmk-check.md           checker contract and stable finding codes
 docs/gated-research-workflow.md trusted research and reproducible engineering loop
 docs/case-studies/         anonymized case studies
 docs/desensitization.md    public-release checklist
-docs/portfolio-plan.md     how this project can be presented in a portfolio
 docs/agent-prompts.md      starter prompts for coding agents
 docs/blog/                 publishable essays and project introductions
 docs/github-actions/       optional CI workflow template
@@ -210,6 +210,16 @@ scripts/init_memory.py     dependency-free template initializer
 scripts/validate_public_repo.py public-release validation checks
 scripts/enable_github_actions.py local helper to install the optional workflow
 ```
+
+The root `memory/` directory is intentional. It records only the development
+of ResearchMemoryKit itself and acts as a sanitized self-hosting example for
+the contract checked by `rmk check . --strict`. It contains no memory copied
+from private research projects.
+
+## Further Reading
+
+- [AI Research Agents Need Gates, Not Just Memory](docs/blog/ai-research-agents-need-gates.md)
+- [AI 科研 Agent 需要的不只是记忆，而是门控](docs/blog/ai-research-agents-need-gates-zh.md)
 
 ## When To Use This
 
@@ -230,7 +240,7 @@ Do not use it when:
 
 ## About
 
-This project was created by [qzSOS](https://github.com/qzSOS) as a portfolio-oriented, public-safe version of a private gated memory layer used across multiple long-running AI-assisted projects.
+This project was created by [qzSOS](https://github.com/qzSOS) as a public reference implementation distilled from a gated memory layer used across multiple long-running AI-assisted projects.
 
 The public repository intentionally uses anonymized examples and templates. It does not include private project names, unpublished results, server paths, collaborators, client information, or dataset-specific confidential details.
 
