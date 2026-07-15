@@ -58,3 +58,9 @@
 - Confirmed no private project names, local workspace paths, or unpublished project identifiers in the current public tree.
 - Pushed commit `ca6cfeb` and verified GitHub Actions run `29403328767` completed successfully.
 - Returned the active route to adoption observation rather than expanding P1 without a concrete failure mode.
+
+## 2026-07-15: GitHub Actions Runtime Maintenance
+
+- The final remote audit found Node.js 20 deprecation warnings on otherwise successful official actions.
+- Upgraded `actions/checkout` from v4 to v6 and `actions/setup-python` from v5 to v6.
+- Synchronized the public workflow template and CI documentation with the live workflow.
