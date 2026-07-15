@@ -50,3 +50,11 @@
 - Removed the internal portfolio planning document from the public documentation tree while keeping the reusable gated-research essays.
 - Defined public maintainer attribution as distinct from private source-project information.
 - Expanded public validation to scan citation, package, and license metadata.
+
+## 2026-07-15: Public Boundary Gate Closed
+
+- Passed 20 standard-library tests, Ruff checks, bytecode compilation, strict self-checks, and validation of 94 public files.
+- Built and installed the wheel in an isolated environment and verified the installed `rmk` entry point.
+- Confirmed no private project names, local workspace paths, or unpublished project identifiers in the current public tree.
+- Pushed commit `ca6cfeb` and verified GitHub Actions run `29403328767` completed successfully.
+- Returned the active route to adoption observation rather than expanding P1 without a concrete failure mode.
