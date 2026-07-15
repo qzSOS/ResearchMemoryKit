@@ -39,6 +39,10 @@
     {
       "file": "memory/WORKFLOW.md",
       "heading": "Gate 4: Release"
+    },
+    {
+      "file": "memory/WORKFLOW.md",
+      "heading": "Gate 5: Reader-facing demo"
     }
   ]
 }

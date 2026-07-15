@@ -30,6 +30,9 @@ jobs:
           rmk check examples/toy-research-project
           rmk check examples/fictional-paper-project
 
+      - name: Run executable gate demo
+        run: python scripts/demo_gate.py
+
       - name: Validate public repo
         run: python scripts/validate_public_repo.py .
 

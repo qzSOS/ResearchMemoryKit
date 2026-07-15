@@ -71,3 +71,13 @@
 - Confirmed the upgraded run used `actions/checkout@v6` and `actions/setup-python@v6`.
 - Confirmed the check run produced zero annotations and no Node.js 20 deprecation warning.
 - Returned the active route to adoption observation.
+
+## 2026-07-15: Reader-Facing Audit and Gate Demo
+
+- Separated private project operation, shared environment conventions, and public-release anonymization.
+- Replaced the blanket private-path prohibition with repository-relative contract paths, optional exact operational paths, local machine mappings, and a permanent credentials ban.
+- Removed three generic anonymous case studies and replaced them with an executable fictional contract demo.
+- Added a 1200 x 675, seven-frame GIF generated from the real demo transcript.
+- Distinguished written scientific gates from P0 checks for files, routes, state fields, and gate headings.
+- Removed a repository-specific Actions installer and replaced the copied workflow with a minimal adopter workflow.
+- Passed 21 tests, Ruff, compilation, strict self-check, validation of 94 public files, current-source wheel installation, and release-tag installation.

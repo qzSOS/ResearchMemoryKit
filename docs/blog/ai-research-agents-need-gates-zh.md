@@ -178,7 +178,10 @@ Requirements:
 5. If the project has deliverables, create a delivery index and evidence-boundary rules.
 6. Define what counts as "done" for the project.
 7. Keep mutable facts in one authoritative source.
-8. Do not include private paths, credentials, unpublished sensitive details, or personal information.
+8. Ask whether the project is private, shared, or being prepared for publication.
+9. Preserve operational paths when a private project needs them, but prefer repository-relative paths or named environment roots in shared records.
+10. Keep per-machine mappings in gitignored local files when practical. Never store credentials or secrets in project memory.
+11. Apply anonymization only to material that will be public.
 ```
 
 这样，ResearchMemoryKit 就不是一个死模板，而是一套设计原则。

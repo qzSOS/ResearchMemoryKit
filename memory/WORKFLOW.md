@@ -39,3 +39,16 @@ Release closes only when:
 - [x] GitHub Actions passes on the release commit;
 - [x] release metadata and documentation agree;
 - [x] Current State records the released result and next route.
+
+## Gate 5: Reader-facing demo
+
+This phase closes only when:
+
+- [x] README language separates private project use from public release rules;
+- [x] current checker behavior is distinguished from future semantic checks;
+- [x] an executable fictional demo fails on real P0 findings and then passes;
+- [x] the README animation is generated from the executable demo transcript;
+- [x] unverifiable anonymized case-study claims are removed or reframed;
+- [x] tests, public validation, and package checks pass locally;
+- [ ] GitHub Actions passes on the published changes;
+- [ ] the repository memory records the closed gate and next route.

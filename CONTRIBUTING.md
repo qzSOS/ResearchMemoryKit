@@ -32,6 +32,7 @@ python -m unittest discover -s tests -v
 rmk check . --strict
 rmk check examples/toy-research-project
 rmk check examples/fictional-paper-project
+python scripts/demo_gate.py
 python scripts/validate_public_repo.py .
 python scripts/init_memory.py minimal /tmp/rmk-minimal --force
 python scripts/init_memory.py research-project /tmp/rmk-research --force
@@ -57,4 +58,4 @@ metadata such as `README.md`, `LICENSE`, `CITATION.cff`, and package metadata.
 Do not add personal identities to templates, examples, case studies, or
 project-memory records.
 
-Use [docs/desensitization.md](docs/desensitization.md) before opening a pull request.
+Use [docs/publishing-safely.md](docs/publishing-safely.md) before opening a pull request.

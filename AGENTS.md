@@ -21,4 +21,5 @@ reflects the new state.
 - Append decisions and significant sessions; do not silently rewrite history.
 - Keep the Python runtime dependency-free.
 - Prefer explicit contracts over heuristics when checking project structure.
-- Preserve public-release validation and strict desensitization.
+- Preserve public-release validation and never copy private project details
+  into this public repository.

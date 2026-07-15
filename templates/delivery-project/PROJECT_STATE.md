@@ -4,7 +4,7 @@
 
 - **Date**: YYYY-MM-DD
 - **Phase**: Current delivery phase.
-- **Latest accepted conclusion**: Current public-facing conclusion, with source.
+- **Latest accepted conclusion**: Current accepted conclusion, with source.
 - **Accepted deliverables**: Link to `DELIVERY_INDEX.md`.
 - **Evidence boundary**: What the current evidence can and cannot support.
 - **Blocking items**: What is waiting on the user, client, data, or tooling.

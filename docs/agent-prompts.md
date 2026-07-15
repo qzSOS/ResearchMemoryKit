@@ -21,7 +21,10 @@ Requirements:
 7. Keep mutable facts in one authoritative source; routers should link to Current State instead of restating current truth.
 8. Create an `rmk.json` contract for the router, Current State, required files, append-only files, routed targets, stale threshold, and gate headings.
 9. Run `rmk check` if the command is available.
-10. Do not include private paths, credentials, unpublished sensitive details, or personal information.
+10. Ask whether the project is private, shared, or being prepared for public release.
+11. Preserve operational facts needed to resume the work. Exact machine paths are allowed when necessary in a private project, but prefer repository-relative paths or named environment roots in shared files.
+12. Keep per-machine mappings in a gitignored local file when practical. Never store credentials or secrets in project memory.
+13. Apply anonymization and publication restrictions only to files or exports that will be public.
 
 After creating the structure, explain:
 - why each file exists;
@@ -70,7 +73,9 @@ Constraints:
 - Add one decision explaining why the memory layer exists.
 - Add a completion gate to memory/WORKFLOW.md.
 - Create or update rmk.json and run rmk check.
-- Do not copy private paths, credentials, or unpublished sensitive details into public-facing files.
+- Preserve operational paths needed by the private project.
+- Prefer named environment roots or gitignored local mappings when the project is shared across machines.
+- Never write credentials into project memory.
 ```
 
 ## Public Release Audit

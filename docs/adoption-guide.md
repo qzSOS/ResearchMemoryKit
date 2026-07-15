@@ -50,6 +50,26 @@ For small teams:
 - review Current State in handoffs;
 - keep generated artifacts outside git unless curated.
 
+## Paths, environments, and secrets
+
+ResearchMemoryKit does not require a private project to hide information that
+is needed to run the project.
+
+- Paths inside `rmk.json` are repository-relative because they describe files
+  in the project contract.
+- Experiment and environment records may use exact local or server paths when
+  the repository is private and those paths are operationally necessary.
+- For a shared repository, prefer stable environment roles and path keys.
+  Keep per-machine mappings in a gitignored file such as
+  `memory/ENVIRONMENT.local.md`.
+- Add `*.local.md` to the target project's `.gitignore` before relying on that
+  convention.
+- Credentials never belong in memory files, even in a private repository.
+
+Apply the stricter rules in
+[publishing-safely.md](publishing-safely.md) only when material will be made
+public.
+
 ## Warning Signs
 
 Add an index or simplify when:

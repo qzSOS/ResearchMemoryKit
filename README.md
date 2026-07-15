@@ -8,9 +8,14 @@ A gated memory layer for trustworthy AI-assisted research workflows.
 [![Bilingual](https://img.shields.io/badge/docs-EN%20%7C%20ZH-lightgrey.svg)](README.zh-CN.md)
 [![LINUX DO](https://img.shields.io/badge/LINUX-DO-ffb000.svg)](https://linux.do)
 
-ResearchMemoryKit is not an agent runtime, experiment tracker, database, or workflow engine. It is a small Markdown-based layer that helps a human researcher and coding agents recover context, preserve decisions, gate project progress, and keep evidence reproducible across many sessions.
+ResearchMemoryKit keeps the working state of a long-running AI-assisted project
+in Git. A small `rmk.json` contract and the `rmk check` command verify that the
+project still has a reachable Current State, required records, and declared
+gate headings.
 
-It is more than a context note template. The goal is to turn long AI-assisted research into a **gated, auditable operating loop**: every direction change has rationale, every experiment has a completion gate, every failure preserves a lesson, and every new session starts from a credible current state.
+The checker does not decide whether a scientific claim is true. It makes the
+project's operating contract visible and testable while humans and agents use
+the written gates to review evidence and decide what happens next.
 
 ```text
 Current State
@@ -25,21 +30,34 @@ Current State
 
 中文说明: [README.zh-CN.md](README.zh-CN.md)
 
-## 30-Second Demo
+## 30-Second Gate Demo
+
+![ResearchMemoryKit catches a broken router and missing gate, then passes after repair](docs/assets/rmk-gate-demo.gif)
+
+The animation comes from an executable fictional demo. The first check catches
+a broken Current State route and a missing gate heading. After those contract
+errors are repaired, the same project passes.
 
 ```bash
 git clone https://github.com/qzSOS/ResearchMemoryKit.git
 cd ResearchMemoryKit
+python scripts/demo_gate.py
+```
+
+See [docs/gate-demo.md](docs/gate-demo.md) for the transcript and the exact P0
+boundary.
+
+## Start a Project
+
+```bash
 python -m pip install -e . --no-deps
-rmk check . --strict
 python scripts/init_memory.py research-project /tmp/my-research-project
 ```
 
-The repository validates its own memory contract, then initializes a project
-with a current snapshot, decision log, experiment log, failed-attempt record,
-pitfall catalog, workflow gate, metadata-only registry, and `rmk.json`.
+Replace `research-project` with `minimal` or `delivery-project` when those
+profiles fit better.
 
-Fill the generated Current State before running:
+Fill the generated Current State, then run:
 
 ```bash
 rmk check /tmp/my-research-project
@@ -56,7 +74,7 @@ For read-only examples, open:
 
 - **Context recovery**: a new human or agent can restart from a short Current State file.
 - **Project steering**: decisions include rationale, alternatives, and revisit conditions, so the project can stop weak routes instead of drifting.
-- **Trusted research**: experiments close only after results, failures, pitfalls, and state changes are recorded.
+- **Trusted research workflow**: written completion gates require results, failures, pitfalls, and state changes to be reviewed before work is closed.
 - **Reproducible engineering**: metadata, commands, outputs, and evidence boundaries stay connected.
 - **Agent autonomy with guardrails**: agents can push work forward, but gates define what counts as real progress.
 
@@ -110,6 +128,9 @@ Normal mode fails on broken contracts. `--strict` also fails on warnings, which
 makes it suitable for CI. See [docs/rmk-check.md](docs/rmk-check.md) for the
 manifest and stable finding codes.
 
+P0 validates contract health. It does not judge evidence quality, scientific
+soundness, or claim truth. Those remain workflow and review responsibilities.
+
 ## Key Ideas
 
 - **Current State first**: a short, overwriteable snapshot is the entry point for every session.
@@ -120,54 +141,17 @@ manifest and stable finding codes.
 - **Gates steer the project**: experiments, pivots, and deliverables have explicit pass/fail or revisit conditions.
 - **Evidence boundaries matter**: do not turn preliminary results into stronger claims than the evidence supports.
 
-## Quick Start
-
-Use the initialization script:
-
-```bash
-python -m pip install -e . --no-deps
-python scripts/init_memory.py minimal /path/to/project
-python scripts/init_memory.py research-project /path/to/project
-python scripts/init_memory.py delivery-project /path/to/project
-rmk check /path/to/project
-```
-
-Or copy a template manually.
-
-For a small project:
-
-```text
-templates/minimal/
-```
-
-For an experiment-heavy research project:
-
-```text
-templates/research-project/
-```
-
-For an engineering or client-delivery project:
-
-```text
-templates/delivery-project/
-```
-
-Then make the first commit before doing project work. The memory layer depends on version history for trust.
-
-The generated contract will fail until the Current State date is initialized.
-This prevents an untouched template from appearing healthy.
-
-If your project does not fit a fixed template, use the adaptive prompt in [docs/agent-prompts.md](docs/agent-prompts.md#adaptive-memory-layer-design). It asks an agent to inspect the project needs and design a tailored directory plus memory layer.
-
 ## Use With an Agent
 
-For a new project, you can give a coding agent this short instruction:
+For a private or internal project, you can give a coding agent this short
+instruction:
 
 ```text
-Initialize this project with ResearchMemoryKit. Read the project goal and expected workflow, then create the smallest useful directory and memory layer. Define the completion gate that future work must pass before it is considered done. Do not include private paths, unpublished results, credentials, or personal information.
+Initialize this project with ResearchMemoryKit. Inspect the existing project and create the smallest useful memory layer. Define completion gates and an rmk.json contract, then run rmk check. Preserve operational facts needed to resume the work. Prefer repository-relative paths or named environment roots in shared files, and use a gitignored local file for machine-specific mappings when practical. Never store credentials in project memory. Ask before preparing any content for public release.
 ```
 
 Longer prompts are available in [docs/agent-prompts.md](docs/agent-prompts.md).
+The adaptive prompt covers projects that do not fit a fixed template.
 
 ## Which Template Should I Use?
 
@@ -188,31 +172,21 @@ Longer prompts are available in [docs/agent-prompts.md](docs/agent-prompts.md).
 
 See [docs/comparison.md](docs/comparison.md) for the longer version.
 
-## Repository Layout
+## Documentation
 
-```text
-templates/                 reusable gated memory templates
-examples/                  fully sanitized toy examples
-examples/fictional-paper-project gated paper-style example
-researchmemorykit/          dependency-free checker and CLI
-tests/                      standard-library regression tests
-rmk.json                    this repository's self-hosted contract
-memory/                     public-safe memory for this repository itself
-docs/theory.md             design principles and failure modes
-docs/rmk-check.md           checker contract and stable finding codes
-docs/gated-research-workflow.md trusted research and reproducible engineering loop
-docs/case-studies/         anonymized case studies
-docs/desensitization.md    public-release checklist
-docs/agent-prompts.md      starter prompts for coding agents
-docs/blog/                 publishable essays and project introductions
-docs/github-actions/       optional CI workflow template
-scripts/init_memory.py     dependency-free template initializer
-scripts/validate_public_repo.py public-release validation checks
-scripts/enable_github_actions.py local helper to install the optional workflow
-```
+| Need | Read |
+|---|---|
+| Add RMK to a new or existing project | [Adoption guide](docs/adoption-guide.md) |
+| Give an agent a realistic startup prompt | [Agent prompts](docs/agent-prompts.md) |
+| See a real fail-and-pass checker run | [Gate demo](docs/gate-demo.md) |
+| Understand `rmk.json` and finding codes | [`rmk check` reference](docs/rmk-check.md) |
+| Design research, direction, and delivery gates | [Gated research workflow](docs/gated-research-workflow.md) |
+| Run the contract check in GitHub Actions | [CI guide](docs/ci.md) |
+| Publish a private project safely | [Publishing safely](docs/publishing-safely.md) |
+| Understand the design tradeoffs | [Theory](docs/theory.md) and [comparison](docs/comparison.md) |
 
 The root `memory/` directory is intentional. It records only the development
-of ResearchMemoryKit itself and acts as a sanitized self-hosting example for
+of ResearchMemoryKit itself and acts as a public self-hosting example for
 the contract checked by `rmk check . --strict`. It contains no memory copied
 from private research projects.
 
@@ -229,7 +203,7 @@ Use ResearchMemoryKit when:
 - multiple agents or sessions will touch it;
 - failed experiments are useful evidence;
 - decisions need rationale and revisit conditions;
-- current status must be recoverable without reading the whole chat history.
+- current status must be recoverable without reading the whole chat history;
 - the project needs gates before claims, pivots, or deliverables are accepted.
 
 Do not use it when:
@@ -240,9 +214,9 @@ Do not use it when:
 
 ## About
 
-This project was created by [qzSOS](https://github.com/qzSOS) as a public reference implementation distilled from a gated memory layer used across multiple long-running AI-assisted projects.
-
-The public repository intentionally uses anonymized examples and templates. It does not include private project names, unpublished results, server paths, collaborators, client information, or dataset-specific confidential details.
+This project was created by [qzSOS](https://github.com/qzSOS). Public examples
+are fictional; guidance for publishing a private project is kept separate in
+[docs/publishing-safely.md](docs/publishing-safely.md).
 
 ## Roadmap
 
@@ -251,7 +225,8 @@ The public repository intentionally uses anonymized examples and templates. It d
 - claim evidence and human-review status;
 - conservative router-truth-duplication checks;
 - optional active indexes for very large append-only files;
-- more sanitized examples for paper writing and benchmark packaging;
+- more executable fictional examples;
+- PyPI distribution and a lower-friction install path;
 - a small GitHub Pages documentation site;
 - starter prompts for common coding agents.
 

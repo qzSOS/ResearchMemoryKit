@@ -136,6 +136,12 @@ gates.
 Design implication: keep the contract explicit and inspectable, and keep the
 checker narrower than a general workflow engine.
 
+The written gate and the automated check have different jobs. The written
+gate defines what evidence and records a project requires before work is
+accepted. P0 verifies that the declared files, routes, state fields, and gate
+headings still exist; it does not decide whether the evidence satisfies the
+gate.
+
 ## What This Is Not
 
 - not a replacement for ML experiment trackers;

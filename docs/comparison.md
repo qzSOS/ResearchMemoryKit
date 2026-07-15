@@ -17,8 +17,9 @@ ResearchMemoryKit focuses on project continuity:
 It is intentionally file-based and git-native. There is no server, database, vector store, or hidden memory layer.
 
 The explicit `rmk.json` contract and `rmk check` validate project structure,
-router reachability, gates, and Current State health without adding retrieval
-infrastructure.
+router reachability, declared gate headings, and Current State health without
+adding retrieval infrastructure. P0 does not judge evidence quality or claim
+truth.
 
 ## Compared With Experiment Trackers
 
