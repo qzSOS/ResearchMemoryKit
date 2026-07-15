@@ -24,7 +24,7 @@ P0 does not:
 
 ## Manifest
 
-Each managed project contains `rmk.json`.
+Each project that enables automated structural checks contains `rmk.json`.
 
 ```json
 {

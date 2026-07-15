@@ -19,8 +19,8 @@ Requirements:
 5. If the project has deliverables, create a delivery index and evidence-boundary rules.
 6. Define what counts as "done" for the project: which memory files must be updated before a task, experiment, pivot, or delivery is complete.
 7. Keep mutable facts in one authoritative source; routers should link to Current State instead of restating current truth.
-8. Create an `rmk.json` contract for the router, Current State, required files, append-only files, routed targets, stale threshold, and gate headings.
-9. Run `rmk check` if the command is available.
+8. If automated structural checks would help this project, create an `rmk.json` contract for the router, Current State, required files, append-only files, routed targets, stale threshold, and gate headings.
+9. If that optional contract is created and the command is available, run `rmk check`.
 10. Ask whether the project is private, shared, or being prepared for public release.
 11. Preserve operational facts needed to resume the work. Exact machine paths are allowed when necessary in a private project, but prefer repository-relative paths or named environment roots in shared files.
 12. Keep per-machine mappings in a gitignored local file when practical. Never store credentials or secrets in project memory.
@@ -32,7 +32,7 @@ After creating the structure, explain:
 - the first Current State;
 - the first decision record;
 - the completion gate that future agents must follow;
-- the `rmk check` result.
+- the `rmk check` result, if the optional contract was enabled.
 ```
 
 ## New Session
@@ -46,7 +46,7 @@ Before doing non-trivial work:
 3. Read memory/README.md and any routed files needed for the task.
 4. Inspect git status.
 5. Follow memory/WORKFLOW.md.
-6. Run `rmk check` before closing a substantial task.
+6. Run `rmk check` before closing a substantial task if the repository uses `rmk.json`.
 
 Do not treat the task as complete until the memory layer reflects any major state change.
 ```
@@ -72,7 +72,7 @@ Constraints:
 - Put current mutable facts only in memory/CURRENT_STATE.md.
 - Add one decision explaining why the memory layer exists.
 - Add a completion gate to memory/WORKFLOW.md.
-- Create or update rmk.json and run rmk check.
+- If automated structural checks are useful, create or update rmk.json and run rmk check.
 - Preserve operational paths needed by the private project.
 - Prefer named environment roots or gitignored local mappings when the project is shared across machines.
 - Never write credentials into project memory.

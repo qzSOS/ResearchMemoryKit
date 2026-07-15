@@ -24,13 +24,14 @@ This turns "the agent did work" into "the project advanced through a recorded ga
 
 ## Written gates and automated checks
 
-The gate in `WORKFLOW.md` defines what the project considers complete.
-`rmk check` verifies that the declared gate and its supporting project
-structure still exist. P0 does not inspect experimental evidence or decide
-whether the gate's scientific conditions were satisfied.
+The gate in `WORKFLOW.md` defines what the project considers complete. Projects
+that want automated structural checks can use `rmk check` to verify that the
+declared gate and its supporting project structure still exist. P0 does not
+inspect experimental evidence or decide whether the gate's scientific
+conditions were satisfied.
 
-Use the checker to catch contract drift. Use evidence review and human
-judgment to close the written gate.
+Use the optional checker to catch contract drift. Use evidence review and
+human judgment to close the written gate.
 
 ## Research Gate
 

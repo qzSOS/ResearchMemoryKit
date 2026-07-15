@@ -1,6 +1,6 @@
 # ResearchMemoryKit
 
-A gated memory layer for trustworthy AI-assisted research workflows.
+A Markdown-first project memory and gated workflow for long-running AI-assisted research and engineering.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![No runtime dependencies](https://img.shields.io/badge/runtime_dependencies-none-blue.svg)](pyproject.toml)
@@ -8,14 +8,16 @@ A gated memory layer for trustworthy AI-assisted research workflows.
 [![Bilingual](https://img.shields.io/badge/docs-EN%20%7C%20ZH-lightgrey.svg)](README.zh-CN.md)
 [![LINUX DO](https://img.shields.io/badge/LINUX-DO-ffb000.svg)](https://linux.do)
 
-ResearchMemoryKit keeps the working state of a long-running AI-assisted project
-in Git. A small `rmk.json` contract and the `rmk check` command verify that the
-project still has a reachable Current State, required records, and declared
-gate headings.
+ResearchMemoryKit is a lightweight, Git-native way to run long-lived
+AI-assisted research and engineering projects. Its core is deliberately
+simple: a small set of Markdown files records the current state, decisions,
+failed routes, evidence boundaries, and completion gates.
 
-The checker does not decide whether a scientific claim is true. It makes the
-project's operating contract visible and testable while humans and agents use
-the written gates to review evidence and decide what happens next.
+Humans and agents read and update these files to recover context, steer the
+project, preserve an audit trail, and decide when work is actually complete.
+You can adopt the method without installing a service or Python package.
+Templates and prompts help you adapt it to a real project; an optional
+`rmk.json` contract and `rmk check` command can catch structural drift.
 
 ```text
 Current State
@@ -30,7 +32,38 @@ Current State
 
 中文说明: [README.zh-CN.md](README.zh-CN.md)
 
-## 30-Second Gate Demo
+## What It Helps With
+
+- **Context recovery**: a new human or agent can restart from a short Current State file.
+- **Project steering**: decisions include rationale, alternatives, and revisit conditions, so the project can stop weak routes instead of drifting.
+- **Trusted research workflow**: written completion gates require results, failures, pitfalls, and state changes to be reviewed before work is closed.
+- **Reproducible engineering**: metadata, commands, outputs, and evidence boundaries stay connected.
+- **Agent autonomy with guardrails**: agents can push work forward, but gates define what counts as real progress.
+
+## Start With Markdown
+
+No installation is required to use the pattern. Copy and adapt one of the
+templates, or ask an agent to design the smallest useful memory layer for the
+actual project.
+
+The included initializer is a convenience:
+
+```bash
+git clone https://github.com/qzSOS/ResearchMemoryKit.git
+cd ResearchMemoryKit
+python scripts/init_memory.py research-project /tmp/my-research-project
+```
+
+Replace `research-project` with `minimal` or `delivery-project` when those
+profiles fit better. Then fill the generated Current State, define the written
+completion gates, and commit the Markdown files with the project.
+
+For read-only examples, open:
+
+- [examples/toy-research-project](examples/toy-research-project) for the smallest complete memory layer;
+- [examples/fictional-paper-project](examples/fictional-paper-project) for a gated paper-style workflow.
+
+## Optional: 30-Second Structure Check
 
 ![ResearchMemoryKit catches a broken router and missing gate, then passes after repair](docs/assets/rmk-gate-demo.gif)
 
@@ -47,36 +80,16 @@ python scripts/demo_gate.py
 See [docs/gate-demo.md](docs/gate-demo.md) for the transcript and the exact P0
 boundary.
 
-## Start a Project
+To add the optional checker to your own project:
 
 ```bash
 python -m pip install -e . --no-deps
-python scripts/init_memory.py research-project /tmp/my-research-project
-```
-
-Replace `research-project` with `minimal` or `delivery-project` when those
-profiles fit better.
-
-Fill the generated Current State, then run:
-
-```bash
 rmk check /tmp/my-research-project
 ```
 
-An uninitialized `YYYY-MM-DD` date is intentionally reported as an error.
-
-For read-only examples, open:
-
-- [examples/toy-research-project](examples/toy-research-project) for the smallest complete memory layer;
-- [examples/fictional-paper-project](examples/fictional-paper-project) for a gated paper-style workflow.
-
-## What It Helps With
-
-- **Context recovery**: a new human or agent can restart from a short Current State file.
-- **Project steering**: decisions include rationale, alternatives, and revisit conditions, so the project can stop weak routes instead of drifting.
-- **Trusted research workflow**: written completion gates require results, failures, pitfalls, and state changes to be reviewed before work is closed.
-- **Reproducible engineering**: metadata, commands, outputs, and evidence boundaries stay connected.
-- **Agent autonomy with guardrails**: agents can push work forward, but gates define what counts as real progress.
+The checker reports missing files, broken routes, stale state, unresolved
+placeholders, and missing declared gate headings. It does not judge whether a
+scientific claim is true or whether the evidence is sufficient.
 
 ## Why This Exists
 
@@ -112,11 +125,12 @@ The critical rule is simple:
 
 > A task is not complete until its gate has passed and the memory layer reflects what changed.
 
-## Machine-Verifiable Gates
+## Optional Structural Checks
 
-Each managed project includes an explicit `rmk.json` contract. The P0 checker
-validates required files, path safety, router reachability, gate headings,
-Current State dates, staleness, and unresolved placeholders.
+The Markdown records and written gates are the system of record. Projects that
+want CI enforcement can also add an explicit `rmk.json` contract. The P0
+checker validates required files, path safety, router reachability, gate
+headings, Current State dates, staleness, and unresolved placeholders.
 
 ```bash
 rmk check /path/to/project
@@ -124,9 +138,9 @@ rmk check /path/to/project --strict
 rmk check /path/to/project --format json
 ```
 
-Normal mode fails on broken contracts. `--strict` also fails on warnings, which
-makes it suitable for CI. See [docs/rmk-check.md](docs/rmk-check.md) for the
-manifest and stable finding codes.
+Normal mode fails on broken contracts. `--strict` also fails on warnings,
+which makes it suitable for CI. See [docs/rmk-check.md](docs/rmk-check.md) for
+the optional manifest and stable finding codes.
 
 P0 validates contract health. It does not judge evidence quality, scientific
 soundness, or claim truth. Those remain workflow and review responsibilities.
@@ -147,7 +161,7 @@ For a private or internal project, you can give a coding agent this short
 instruction:
 
 ```text
-Initialize this project with ResearchMemoryKit. Inspect the existing project and create the smallest useful memory layer. Define completion gates and an rmk.json contract, then run rmk check. Preserve operational facts needed to resume the work. Prefer repository-relative paths or named environment roots in shared files, and use a gitignored local file for machine-specific mappings when practical. Never store credentials in project memory. Ask before preparing any content for public release.
+Use the ResearchMemoryKit method for this project. Inspect the project goals and workflow, then create the smallest useful Markdown memory layer. Define written completion gates, authoritative files, and the session recovery order. Preserve operational facts needed to resume the work. Prefer repository-relative paths or named environment roots in shared files, and use a gitignored local file for machine-specific mappings when practical. Never store credentials in project memory. If automated structural checks would help, also create rmk.json and run rmk check. Ask before preparing any content for public release.
 ```
 
 Longer prompts are available in [docs/agent-prompts.md](docs/agent-prompts.md).
@@ -176,7 +190,7 @@ See [docs/comparison.md](docs/comparison.md) for the longer version.
 
 | Need | Read |
 |---|---|
-| Add RMK to a new or existing project | [Adoption guide](docs/adoption-guide.md) |
+| Adopt the Markdown workflow in a new or existing project | [Adoption guide](docs/adoption-guide.md) |
 | Give an agent a realistic startup prompt | [Agent prompts](docs/agent-prompts.md) |
 | See a real fail-and-pass checker run | [Gate demo](docs/gate-demo.md) |
 | Understand `rmk.json` and finding codes | [`rmk check` reference](docs/rmk-check.md) |
@@ -186,9 +200,9 @@ See [docs/comparison.md](docs/comparison.md) for the longer version.
 | Understand the design tradeoffs | [Theory](docs/theory.md) and [comparison](docs/comparison.md) |
 
 The root `memory/` directory is intentional. It records only the development
-of ResearchMemoryKit itself and acts as a public self-hosting example for
-the contract checked by `rmk check . --strict`. It contains no memory copied
-from private research projects.
+of ResearchMemoryKit itself and acts as a public self-hosting example of the
+Markdown workflow. This repository also uses the optional contract checker on
+that structure. It contains no memory copied from private research projects.
 
 ## Further Reading
 

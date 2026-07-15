@@ -127,11 +127,11 @@ The memory layer should define what counts as a completed experiment, accepted c
 
 An agent can run many commands without advancing research. Progress becomes trustworthy when each loop closes: decision, execution, validation, conclusion or failure, pitfall update, and Current State replacement.
 
-### P9: Explicit Contracts Make Gates Verifiable
+### P9: Explicit Contracts Can Make Gates Machine-Verifiable
 
-Human-readable rules define intent, but reliable automation needs a small
-machine-readable contract for authoritative files, routing, freshness, and
-gates.
+Markdown records and human-readable gates define the workflow. Projects that
+need reliable automation can add a small machine-readable contract for
+authoritative files, routing, freshness, and gates.
 
 Design implication: keep the contract explicit and inspectable, and keep the
 checker narrower than a general workflow engine.

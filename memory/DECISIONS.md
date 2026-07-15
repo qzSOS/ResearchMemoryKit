@@ -66,3 +66,16 @@
 | Alternatives | Keep anonymous narratives; publish private evidence after redaction; omit examples entirely. |
 | Revisit condition | Add a real case study only when its project and supporting evidence are public. |
 | Source | `docs/gate-demo.md` |
+
+## D-006: Keep Markdown as the Product Core
+
+| Field | Value |
+|---|---|
+| Date | 2026-07-15 |
+| Status | Active |
+| Question | Should the public repository present ResearchMemoryKit primarily as the `rmk` checker? |
+| Decision | No. Present the Markdown records, written gates, and operating rules as the core method. Keep templates, prompts, `rmk.json`, and `rmk check` as progressively optional adoption aids. |
+| Rationale | The method remains useful without installation, while CLI-first messaging narrows the project to a validator and hides its value for context recovery, project steering, trustworthy research, and reproducible engineering. |
+| Alternatives | Lead with the CLI; remove the checker; describe every component as equally required. |
+| Revisit condition | Revisit if adoption data shows that a tool-first entry point is substantially clearer without obscuring the underlying method. |
+| Source | `README.md`, `README.zh-CN.md`, `docs/adoption-guide.md` |

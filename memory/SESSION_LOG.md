@@ -89,3 +89,11 @@
 - Added the executable demo and P0 boundary to both gate essays in commit `46a048a`.
 - Verified GitHub Actions run `29406912310` after the article update.
 - Closed Gate 5 and routed the next phase to Zhihu publication before PyPI distribution.
+
+## 2026-07-15: Markdown-First Positioning Pass
+
+- Reframed the bilingual README around a small Git-native set of Markdown records, written gates, and operating rules.
+- Moved the zero-install adoption path ahead of the optional checker demo.
+- Changed `rmk.json` and `rmk check` from mandatory project identity to optional structural guardrails for projects that need CI or drift detection.
+- Synchronized the adoption guide, agent prompts, checker reference, comparison, gated workflow, theory, and package description with the same boundary.
+- Passed 21 tests, Ruff, bytecode compilation, strict self-check, public validation of 94 files, UTF-8 validation of 62 Markdown files, and whitespace checks.

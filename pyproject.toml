@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "researchmemorykit"
 version = "0.2.0"
-description = "A gated memory layer for trustworthy AI-assisted research workflows."
+description = "A Markdown-first project memory and gated workflow for AI-assisted research."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
