@@ -50,5 +50,5 @@ This phase closes only when:
 - [x] the README animation is generated from the executable demo transcript;
 - [x] unverifiable anonymized case-study claims are removed or reframed;
 - [x] tests, public validation, and package checks pass locally;
-- [ ] GitHub Actions passes on the published changes;
-- [ ] the repository memory records the closed gate and next route.
+- [x] GitHub Actions passes on the published changes;
+- [x] the repository memory records the closed gate and next route.

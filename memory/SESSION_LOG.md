@@ -81,3 +81,11 @@
 - Distinguished written scientific gates from P0 checks for files, routes, state fields, and gate headings.
 - Removed a repository-specific Actions installer and replaced the copied workflow with a minimal adopter workflow.
 - Passed 21 tests, Ruff, compilation, strict self-check, validation of 94 public files, current-source wheel installation, and release-tag installation.
+
+## 2026-07-15: Gate 5 Closed
+
+- Pushed reader-facing audit commit `4321eed` and verified GitHub Actions run `29406693604`.
+- Verified the GIF, revised README, minimal adopter workflow, and replacement documents on the remote `main` tree.
+- Added the executable demo and P0 boundary to both gate essays in commit `46a048a`.
+- Verified GitHub Actions run `29406912310` after the article update.
+- Closed Gate 5 and routed the next phase to Zhihu publication before PyPI distribution.
