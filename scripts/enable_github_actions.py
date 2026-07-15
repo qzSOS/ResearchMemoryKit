@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Install the optional GitHub Actions workflow locally.
+"""Install the GitHub Actions validation workflow locally.
 
 GitHub requires the `workflow` token scope to push files under
-`.github/workflows/`. If a token lacks that scope, keep the workflow template
-under `docs/github-actions/` and run this script after refreshing auth.
+`.github/workflows/`. Run this helper after refreshing auth when adopting the
+workflow from `docs/github-actions/`.
 """
 
 from __future__ import annotations

@@ -63,6 +63,7 @@ Each managed project contains `rmk.json`.
 
 All paths are repository-relative and must resolve inside the checked root.
 Unknown top-level fields are allowed for forward-compatible project metadata.
+`required_files`, `router_targets`, and `gates` must be non-empty.
 
 ## P0 Checks
 

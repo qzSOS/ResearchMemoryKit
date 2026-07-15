@@ -27,4 +27,3 @@
 | Alternatives | Add registry lifecycle, claim review, git append-only enforcement, semantic duplication detection, or retrieval indexes immediately. |
 | Revisit condition | Add deeper checks only after P0 is stable and self-hosted. |
 | Source | `docs/rmk-check.md` |
-

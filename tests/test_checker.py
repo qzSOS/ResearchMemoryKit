@@ -96,6 +96,12 @@ class CheckerTests(unittest.TestCase):
         self.fixture.write("rmk.json", json.dumps(manifest))
         self.assertEqual(["RMK002"], self.codes())
 
+    def test_empty_gate_contract_is_rmk002(self) -> None:
+        manifest = json.loads((self.root / "rmk.json").read_text(encoding="utf-8"))
+        manifest["gates"] = []
+        self.fixture.write("rmk.json", json.dumps(manifest))
+        self.assertEqual(["RMK002"], self.codes())
+
     def test_unsafe_contract_path_is_rmk003(self) -> None:
         manifest = json.loads((self.root / "rmk.json").read_text(encoding="utf-8"))
         manifest["required_files"].append("../outside.md")
@@ -126,6 +132,13 @@ class CheckerTests(unittest.TestCase):
         self.fixture.write(
             "memory/CURRENT_STATE.md",
             "# Current State\n\n- **Date**: 2026-02-31\n",
+        )
+        self.assertEqual(["RMK040"], self.codes())
+
+    def test_current_state_date_inside_fence_does_not_count(self) -> None:
+        self.fixture.write(
+            "memory/CURRENT_STATE.md",
+            "# Current State\n\n```markdown\n- **Date**: 2026-07-15\n```\n",
         )
         self.assertEqual(["RMK040"], self.codes())
 
@@ -162,9 +175,7 @@ class CheckerTests(unittest.TestCase):
         )
         stdout = StringIO()
         with redirect_stdout(stdout):
-            exit_code = main(
-                ["check", str(self.root), "--strict", "--format", "json"]
-            )
+            exit_code = main(["check", str(self.root), "--strict", "--format", "json"])
         payload = json.loads(stdout.getvalue())
         self.assertEqual(1, exit_code)
         self.assertFalse(payload["passed"])
@@ -172,9 +183,7 @@ class CheckerTests(unittest.TestCase):
 
     def test_custom_manifest_name_is_reported(self) -> None:
         (self.root / "rmk.json").rename(self.root / "custom.json")
-        manifest = json.loads(
-            (self.root / "custom.json").read_text(encoding="utf-8")
-        )
+        manifest = json.loads((self.root / "custom.json").read_text(encoding="utf-8"))
         manifest["required_files"] = "not-a-list"
         self.fixture.write("custom.json", json.dumps(manifest))
         report = check_project(self.root, manifest_path="custom.json")

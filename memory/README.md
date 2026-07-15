@@ -15,4 +15,3 @@ Read `CURRENT_STATE.md` first in every new session.
 - `DECISIONS.md` and `SESSION_LOG.md` are append-only.
 - `WORKFLOW.md` changes only when the development contract changes.
 - Chat history is not an authoritative project record.
-

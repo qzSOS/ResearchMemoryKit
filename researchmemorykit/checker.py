@@ -225,15 +225,24 @@ def _parse_manifest(
                 stale_after_days=stale_after_days,
             )
 
-    required_files = _string_list(
-        data, "required_files", findings, manifest_label
-    )
+    required_files = _string_list(data, "required_files", findings, manifest_label)
     append_only_files = _string_list(
         data, "append_only_files", findings, manifest_label
     )
-    router_targets = _string_list(
-        data, "router_targets", findings, manifest_label
-    )
+    router_targets = _string_list(data, "router_targets", findings, manifest_label)
+    for key, values in (
+        ("required_files", required_files),
+        ("router_targets", router_targets),
+    ):
+        if not values:
+            findings.append(
+                _finding(
+                    "RMK002",
+                    "error",
+                    f"Manifest field '{key}' must not be empty.",
+                    manifest_label,
+                )
+            )
 
     gates_data = data.get("gates")
     gates: list[GateConfig] = []
@@ -275,8 +284,15 @@ def _parse_manifest(
                     )
                 )
                 continue
-            gates.append(
-                GateConfig(file=gate_file.strip(), heading=heading.strip())
+            gates.append(GateConfig(file=gate_file.strip(), heading=heading.strip()))
+        if not gates:
+            findings.append(
+                _finding(
+                    "RMK002",
+                    "error",
+                    "Manifest field 'gates' must contain at least one gate.",
+                    manifest_label,
+                )
             )
 
     if any(item.code == "RMK002" for item in findings):
@@ -323,8 +339,8 @@ def _read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8", errors="replace")
 
 
-def _markdown_headings(text: str) -> set[str]:
-    headings: set[str] = set()
+def _outside_markdown_fences(text: str) -> str:
+    visible_lines: list[str] = []
     in_fence = False
     fence_marker = ""
     for line in text.splitlines():
@@ -338,8 +354,14 @@ def _markdown_headings(text: str) -> set[str]:
                 in_fence = False
                 fence_marker = ""
             continue
-        if in_fence:
-            continue
+        if not in_fence:
+            visible_lines.append(line)
+    return "\n".join(visible_lines)
+
+
+def _markdown_headings(text: str) -> set[str]:
+    headings: set[str] = set()
+    for line in _outside_markdown_fences(text).splitlines():
         match = HEADING_RE.match(line)
         if match:
             headings.add(match.group(1).strip())
@@ -491,7 +513,8 @@ def check_project(
     state_path = resolved_paths.get(manifest.current_state.path)
     if state_path is not None and state_path.is_file():
         state_text = _read_text(state_path)
-        date_match = DATE_FIELD_RE.search(state_text)
+        visible_state_text = _outside_markdown_fences(state_text)
+        date_match = DATE_FIELD_RE.search(visible_state_text)
         state_date: date | None = None
         if date_match is None:
             findings.append(
@@ -541,7 +564,7 @@ def check_project(
                 )
 
         for pattern in PLACEHOLDER_PATTERNS:
-            if pattern.search(state_text):
+            if pattern.search(visible_state_text):
                 findings.append(
                     _finding(
                         "RMK050",

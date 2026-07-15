@@ -22,4 +22,3 @@ reflects the new state.
 - Keep the Python runtime dependency-free.
 - Prefer explicit contracts over heuristics when checking project structure.
 - Preserve public-release validation and strict desensitization.
-

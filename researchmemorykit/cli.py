@@ -60,10 +60,7 @@ def _render_text(report: CheckReport, *, strict: bool) -> str:
 
     status = "PASS" if report.passed(strict=strict) else "FAIL"
     lines.append(
-        (
-            f"{status}: {report.error_count} error(s), "
-            f"{report.warning_count} warning(s)."
-        )
+        (f"{status}: {report.error_count} error(s), {report.warning_count} warning(s).")
     )
     return "\n".join(lines)
 
@@ -87,4 +84,3 @@ def main(argv: Sequence[str] | None = None) -> int:
     else:
         print(_render_text(report, strict=args.strict))
     return 0 if report.passed(strict=args.strict) else 1
-

@@ -27,11 +27,26 @@ ResearchMemoryKit is intentionally small. Contributions should preserve that con
 Run:
 
 ```bash
+python -m pip install -e . --no-deps
+python -m unittest discover -s tests -v
+rmk check . --strict
+rmk check examples/toy-research-project
+rmk check examples/fictional-paper-project
 python scripts/validate_public_repo.py .
 python scripts/init_memory.py minimal /tmp/rmk-minimal --force
 python scripts/init_memory.py research-project /tmp/rmk-research --force
 python scripts/init_memory.py delivery-project /tmp/rmk-delivery --force
 ```
+
+Before submitting Python changes, also run:
+
+```bash
+ruff check researchmemorykit scripts tests
+ruff format --check researchmemorykit scripts tests
+```
+
+Ruff is a development tool only; ResearchMemoryKit has no third-party runtime
+dependencies.
 
 ## Privacy
 

@@ -50,8 +50,7 @@ def iter_files(root: Path) -> list[Path]:
     files: list[Path] = []
     for path in root.rglob("*"):
         if any(
-            part in SKIP_DIRS or part.endswith(SKIP_DIR_SUFFIXES)
-            for part in path.parts
+            part in SKIP_DIRS or part.endswith(SKIP_DIR_SUFFIXES) for part in path.parts
         ):
             continue
         if path.is_file():
@@ -102,12 +101,16 @@ def scan_sensitive(files: list[Path], root: Path) -> list[str]:
         for name, pattern in SENSITIVE_PATTERNS:
             for match in pattern.finditer(text):
                 line = text.count("\n", 0, match.start()) + 1
-                errors.append(f"Sensitive pattern {name}: {path.relative_to(root)}:{line}")
+                errors.append(
+                    f"Sensitive pattern {name}: {path.relative_to(root)}:{line}"
+                )
     return errors
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Validate ResearchMemoryKit public repo.")
+    parser = argparse.ArgumentParser(
+        description="Validate ResearchMemoryKit public repo."
+    )
     parser.add_argument(
         "root",
         nargs="?",

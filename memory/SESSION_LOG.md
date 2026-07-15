@@ -28,3 +28,10 @@
 - Added bundled-project regression tests; the suite now contains 17 tests.
 - Updated bilingual README, adoption prompts, comparison, portfolio, theory, CI, and citation metadata for `0.2.0`.
 - Verified initialized templates copy the manifest and fail only on the intentionally uninitialized Current State date.
+
+## 2026-07-15: Release Audit Hardening
+
+- Corrected the supported Python range from 3.9 to 3.10+ to match the type syntax used by the package.
+- Rejected empty required-file, router-target, and gate contracts.
+- Prevented fenced Markdown examples from satisfying Current State date checks.
+- Added regression tests, synchronized contribution guidance, formatted all Python sources, and verified the built wheel metadata and installed console entry point.
