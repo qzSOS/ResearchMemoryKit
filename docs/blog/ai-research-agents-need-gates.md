@@ -10,6 +10,25 @@ An agent can run code, generate plots, write reports, and produce artifacts. Tha
 
 ResearchMemoryKit is built around that idea.
 
+## A reproducible gate failure
+
+![ResearchMemoryKit catches a broken router and missing gate, then passes after repair](../assets/rmk-gate-demo.gif)
+
+Run the fictional demo from the repository root:
+
+```bash
+python scripts/demo_gate.py
+```
+
+The agent first claims that project memory is ready. The check then finds that
+`AGENTS.md` no longer routes to Current State and the declared experiment gate
+is missing from `WORKFLOW.md`. Repairing those two contract errors makes the
+same project pass.
+
+P0 checks contract drift. It does not decide whether evidence is sufficient,
+the method is sound, or a claim is true. The written gate defines completion;
+`rmk check` confirms that the declared gate and recovery path still exist.
+
 ## Chat History Is Not Project Memory
 
 Chat history is linear. Research projects are not.

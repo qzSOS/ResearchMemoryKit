@@ -17,6 +17,24 @@
 
 所以，AI 科研 Agent 需要的不只是 memory，而是 gates。
 
+## 先看一次可复现的门控失败
+
+![ResearchMemoryKit 发现断开的 Current State 路由和缺失门控，修复后通过](../assets/rmk-gate-demo.gif)
+
+这个纯虚构演示可以直接运行：
+
+```bash
+python scripts/demo_gate.py
+```
+
+Agent 先声称“项目记忆已经准备好”，但第一次检查发现两个问题：
+`AGENTS.md` 已经无法路由到 Current State，`WORKFLOW.md` 中声明的实验完成门
+也不存在。修复后，同一个项目通过检查。
+
+这里需要把边界说清楚：当前 P0 检查的是项目契约有没有漂移，不会判断实验
+证据是否充分、科研方法是否合理或结论是否真实。书面门控定义完成条件，
+`rmk check` 负责确认这些门控和入口没有从项目中消失。
+
 ## Chat History 不是 Project Memory
 
 聊天记录适合保存对话，但不适合作为项目记忆。
