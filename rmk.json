@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "profile": "tool-project",
+  "router": "AGENTS.md",
+  "current_state": {
+    "path": "memory/CURRENT_STATE.md",
+    "stale_after_days": 7
+  },
+  "required_files": [
+    "AGENTS.md",
+    "memory/README.md",
+    "memory/CURRENT_STATE.md",
+    "memory/DECISIONS.md",
+    "memory/WORKFLOW.md",
+    "memory/SESSION_LOG.md"
+  ],
+  "append_only_files": [
+    "memory/DECISIONS.md",
+    "memory/SESSION_LOG.md"
+  ],
+  "router_targets": [
+    "memory/CURRENT_STATE.md",
+    "memory/README.md",
+    "memory/WORKFLOW.md"
+  ],
+  "gates": [
+    {
+      "file": "memory/WORKFLOW.md",
+      "heading": "Gate 1: Design"
+    },
+    {
+      "file": "memory/WORKFLOW.md",
+      "heading": "Gate 2: Implementation"
+    },
+    {
+      "file": "memory/WORKFLOW.md",
+      "heading": "Gate 3: Adoption"
+    },
+    {
+      "file": "memory/WORKFLOW.md",
+      "heading": "Gate 4: Release"
+    }
+  ]
+}
