@@ -64,3 +64,10 @@
 - The final remote audit found Node.js 20 deprecation warnings on otherwise successful official actions.
 - Upgraded `actions/checkout` from v4 to v6 and `actions/setup-python` from v5 to v6.
 - Synchronized the public workflow template and CI documentation with the live workflow.
+
+## 2026-07-15: CI Maintenance Gate Closed
+
+- Pushed commit `cd031ec` and verified GitHub Actions run `29403696496` completed successfully.
+- Confirmed the upgraded run used `actions/checkout@v6` and `actions/setup-python@v6`.
+- Confirmed the check run produced zero annotations and no Node.js 20 deprecation warning.
+- Returned the active route to adoption observation.
