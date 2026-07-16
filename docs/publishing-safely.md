@@ -53,6 +53,19 @@ Do not call a heavily generalized description a real case study. Label it as a
 fictional example or a design pattern unless readers can inspect enough
 evidence to evaluate the claim.
 
+## Inspectable public case
+
+[Medical SLM](https://github.com/qzSOS/Medical-SLM) is a separate public
+repository that applied this process before publication. It retains the
+project's sanitized Current State, decisions, failed routes, experiment
+registry, gates, code, and evidence boundaries while excluding machine
+identities, personal paths, credentials, weights, raw datasets, large
+predictions, and owner-only release notes.
+
+The link demonstrates how a project memory layer can be prepared for public
+inspection. It does not mean `rmk check` validated the project's scientific or
+medical claims.
+
 ## Author attribution
 
 Publishing a repository under a real name is separate from publishing private

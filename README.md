@@ -63,6 +63,23 @@ For read-only examples, open:
 - [examples/toy-research-project](examples/toy-research-project) for the smallest complete memory layer;
 - [examples/fictional-paper-project](examples/fictional-paper-project) for a gated paper-style workflow.
 
+## Real Public Project
+
+[Medical SLM](https://github.com/qzSOS/Medical-SLM) is the first inspectable
+real-project case built with this method. It shows how a short research
+prototype used:
+
+- a current-state router and explicit data, training, evaluation, and delivery gates;
+- append-only decisions, failed attempts, pitfalls, and experiment conclusions;
+- a metadata-only experiment registry with frozen inputs, commands, hashes, and claim boundaries;
+- a separate publication pass that removed machine identities, local paths, weights, datasets, and owner-only release notes.
+
+The bundled examples remain fictional and executable. Medical SLM is linked as
+a separate public repository so readers can inspect the actual project history
+without turning ResearchMemoryKit into a copy of that project. The RMK checker
+validates structure and routing, not the truth of its medical or experimental
+claims.
+
 ## Optional: 30-Second Structure Check
 
 ![ResearchMemoryKit catches a broken router and missing gate, then passes after repair](docs/assets/rmk-gate-demo.gif)
@@ -228,9 +245,10 @@ Do not use it when:
 
 ## About
 
-This project was created by [qzSOS](https://github.com/qzSOS). Public examples
-are fictional; guidance for publishing a private project is kept separate in
-[docs/publishing-safely.md](docs/publishing-safely.md).
+This project was created by [qzSOS](https://github.com/qzSOS). Bundled examples
+are fictional; [Medical SLM](https://github.com/qzSOS/Medical-SLM) is a
+separate, inspectable public-project case. Guidance for publishing a private
+project is kept in [docs/publishing-safely.md](docs/publishing-safely.md).
 
 ## Roadmap
 

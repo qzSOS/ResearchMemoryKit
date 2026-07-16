@@ -97,3 +97,15 @@
 - Changed `rmk.json` and `rmk check` from mandatory project identity to optional structural guardrails for projects that need CI or drift detection.
 - Synchronized the adoption guide, agent prompts, checker reference, comparison, gated workflow, theory, and package description with the same boundary.
 - Passed 21 tests, Ruff, bytecode compilation, strict self-check, public validation of 94 files, UTF-8 validation of 62 Markdown files, and whitespace checks.
+
+## 2026-07-16: First Real Public Case Linked
+
+- Published `qzSOS/Medical-SLM` as a separate, sanitized project repository
+  with code, tests, registered experiments, negative results, fixed-protocol
+  metrics, and its own ResearchMemoryKit layer.
+- Added the case to both READMEs and `docs/publishing-safely.md` after the D-005
+  revisit condition became true.
+- Kept bundled examples fictional and executable; did not copy Medical SLM
+  project records into this repository.
+- Stated explicitly that `rmk check` validates structure and routing rather
+  than medical correctness, evidence sufficiency, or scientific claim truth.

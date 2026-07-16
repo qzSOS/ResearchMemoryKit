@@ -79,3 +79,16 @@
 | Alternatives | Lead with the CLI; remove the checker; describe every component as equally required. |
 | Revisit condition | Revisit if adoption data shows that a tool-first entry point is substantially clearer without obscuring the underlying method. |
 | Source | `README.md`, `README.zh-CN.md`, `docs/adoption-guide.md` |
+
+## D-007: Add Medical SLM as the First Inspectable Real-Project Case
+
+| Field | Value |
+|---|---|
+| Date | 2026-07-16 |
+| Status | Active; satisfies the revisit condition in D-005 |
+| Question | Should ResearchMemoryKit link a real project now that its repository and supporting evidence are public? |
+| Decision | Link `qzSOS/Medical-SLM` as a separate real-project case in both READMEs and the safe-publishing guide. Keep the bundled fictional examples unchanged. |
+| Rationale | Medical SLM exposes a sanitized Current State, decisions, failures, pitfalls, registry, completion gates, code, and fixed-protocol evidence that readers can inspect directly. |
+| Alternatives | Copy the case into this repository; replace fictional examples; make a broad unverifiable adoption claim; omit the first public adopter. |
+| Revisit condition | Remove or revise the link if Medical SLM is no longer public, its evidence boundary becomes unclear, or the case is presented as scientific validation by `rmk check`. |
+| Source | `https://github.com/qzSOS/Medical-SLM` |
