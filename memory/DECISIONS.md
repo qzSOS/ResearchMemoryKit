@@ -92,3 +92,16 @@
 | Alternatives | Copy the case into this repository; replace fictional examples; make a broad unverifiable adoption claim; omit the first public adopter. |
 | Revisit condition | Remove or revise the link if Medical SLM is no longer public, its evidence boundary becomes unclear, or the case is presented as scientific validation by `rmk check`. |
 | Source | `https://github.com/qzSOS/Medical-SLM` |
+
+## D-008: Add Shared Research Stage, Blocker, Artifact, and Date Semantics
+
+| Field | Value |
+|---|---|
+| Date | 2026-07-19 |
+| Status | Active |
+| Question | How should a generic research-project memory layer describe research maturity, blocked work, artifact availability, and date authority without changing the runtime checker? |
+| Decision | Add written `EXPLORATORY`, `CONFIRMATORY`, and `PAPER` stage semantics; stable blocker codes with recovery fields; separate artifact identity from availability and load verification; explicit date-authority fields; and a short Current State template for the research-project profile. Keep these semantics human-reviewed and outside the dependency-free checker. |
+| Rationale | A shared vocabulary prevents access, missing-input, license, resource, date, budget, approval, provenance, and scientific failures from being collapsed into one status. It also lets exploratory work proceed with an honest evidence boundary while preserving stricter standards for later claims. |
+| Alternatives | Add semantic checks to the runtime; require paper-level conditions before exploration; use `DATA_BLOCKED` as a universal reason; treat registered artifacts as available; change the manifest schema. |
+| Revisit condition | Revisit after adopters have used the vocabulary in real public or sanitized projects and can identify ambiguity that written guidance cannot resolve. |
+| Source | `docs/gated-research-workflow.md`, `docs/gated-research-workflow.zh-CN.md`, `templates/research-project/memory/WORKFLOW.md` |

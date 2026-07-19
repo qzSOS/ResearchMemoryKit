@@ -2,6 +2,8 @@
 
 These prompts help a coding agent use ResearchMemoryKit consistently.
 
+The Chinese counterpart is [agent-prompts.zh-CN.md](agent-prompts.zh-CN.md).
+
 ## Adaptive Memory Layer Design
 
 Use this when a fixed template is not enough and you want the agent to design the project structure and memory layer from the actual project needs.
@@ -49,6 +51,50 @@ Before doing non-trivial work:
 6. Run `rmk check` before closing a substantial task if the repository uses `rmk.json`.
 
 Do not treat the task as complete until the memory layer reflects any major state change.
+```
+
+## Research Stage, Blocker, and Artifact Semantics
+
+Use this prompt for research tasks that can produce evidence, consume
+artifacts, change a research direction, or pause on a condition.
+
+```text
+This project uses ResearchMemoryKit. Before starting, inspect the current
+research stage and the written gate.
+
+1. Decide whether the current work is EXPLORATORY, CONFIRMATORY, or PAPER.
+   State whether the task is exploration, confirmation, or paper preparation.
+2. Keep the stage separate from evidence grade. Do not automatically promote
+   an exploratory result because a test passes.
+3. If work is blocked, use one standard blocker code:
+   ACCESS_BLOCKED, INPUT_MISSING, LICENSE_BLOCKED, IDENTITY_DRIFT,
+   CONTRACT_INCOMPLETE, RESOURCE_BUSY, DATE_NOT_DUE, BUDGET_LIMITED,
+   HUMAN_APPROVAL_REQUIRED, or SCIENTIFIC_GATE_FAILED.
+4. Record blocker_code, summary, recoverable, owner, recovery_condition,
+   safe_next_action, scientific_impact, observed_at as a full ISO-8601
+   timestamp, and evidence_reference as a repository-relative path, commit,
+   Goal ID, or artifact ID.
+5. Keep artifact identity separate from artifact availability. Distinguish
+   REGISTERED, LOCATABLE, ACCESSIBLE, HASH_VERIFIED, STAGED, LOAD_VERIFIED,
+   and EVALUATED. Do not treat a registration, hash, checkpoint identity, or
+   metadata-only check as proof that a file is available or loadable.
+6. If an exploratory run regenerates an artifact, create a new artifact
+   identity with newly_generated provenance. Never overwrite historical hash or
+   provenance.
+7. Record the recovery condition and the next safe action. Do not freeze
+   unrelated documentation, validation, or read-only audit work because one
+   local action is blocked.
+8. Do not turn exploratory results into paper claims. Keep observations,
+   failures, interpretations, evidence boundaries, and unsupported claims
+   distinct.
+9. For cross-day or cross-time-zone work, record governing_date,
+   date_authority, timezone, observed_at, eligible_after, and
+   date_conflict_policy. Treat the Current State Date as a project snapshot,
+   not automatically as the session date authority.
+10. Before closing the task, update memory/CURRENT_STATE.md and append the
+    relevant decision, conclusion, failure, pitfall, or session record.
+    Preserve human scientific judgment and final authorship, submission, and
+    release approval.
 ```
 
 ## End of Experiment

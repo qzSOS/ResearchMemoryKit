@@ -109,3 +109,20 @@
   project records into this repository.
 - Stated explicitly that `rmk check` validates structure and routing rather
   than medical correctness, evidence sufficiency, or scientific claim truth.
+
+## 2026-07-19: Research Stage and Artifact Semantics Update
+
+- Created local branch `infra/research-stage-semantics` from the clean
+  `main` snapshot without changing the configured remote.
+- Added bilingual guidance for `EXPLORATORY`, `CONFIRMATORY`, and `PAPER`
+  stages, standard blocker codes, artifact lifecycle and failure states, and
+  date authority.
+- Added a new bilingual Agent prompt while preserving the existing prompts.
+- Updated the `research-project` Current State and Workflow templates without
+  changing the checker, CLI, manifest, schema, runtime dependencies, or
+  version.
+- Verified Markdown links, public-content patterns, template initialization,
+  the executable gate demo, bytecode compilation, whitespace, unit tests,
+  Ruff, public validation, and `rmk check . --strict`.
+- Kept all examples fictional and repository-relative; no private project
+  records or sibling-repository content were accessed or copied.
