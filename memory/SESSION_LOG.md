@@ -126,3 +126,15 @@
   Ruff, public validation, and `rmk check . --strict`.
 - Kept all examples fictional and repository-relative; no private project
   records or sibling-repository content were accessed or copied.
+
+## 2026-07-19: Human Review Completed
+
+- Reviewed the staged research, blocker, artifact, and date semantics update.
+- Confirmed the English and Chinese guidance are aligned and the public tree
+  contains no private project records, local paths, or credentials.
+- Re-ran tests, Ruff, compilation, public validation, strict `rmk check`, and
+  whitespace checks; all passed.
+- Marked the branch ready for publication without changing runtime behavior,
+  the manifest contract, the schema, the version, or the configured remote.
+- The next validation route is a single private-project trial before any
+  machine-readable semantic checks or broader migration.
